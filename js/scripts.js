@@ -1,20 +1,3 @@
-// Efecto de focus/ampliar imagen de infografía sin marco
-document.addEventListener('DOMContentLoaded', function() {
-    var img = document.getElementById('img-container');
-    var overlay = document.getElementById('img-overlay');
-    var closeBtn = document.getElementById('close-overlay');
-    if(img && overlay && closeBtn) {
-        img.addEventListener('click', function() {
-            overlay.style.display = 'flex';
-        });
-        closeBtn.addEventListener('click', function() {
-            overlay.style.display = 'none';
-        });
-        overlay.addEventListener('click', function(e) {
-            if(e.target === overlay) overlay.style.display = 'none';
-        });
-    }
-});
 // Efecto de focus/ampliar imagen de ipad
 document.addEventListener('DOMContentLoaded', function() {
     var ipad = document.getElementById('ipad-container');
