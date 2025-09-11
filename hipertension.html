@@ -61,8 +61,8 @@
                         </div>
                         <!-- Overlay para fullscreen -->
                         <div id="ipad-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center;">
-                            <div style="position: relative; width: 95vw; max-width: 1200px; max-height: 95vh; overflow: auto;">
-                                <img src="assets/img/hipert.png" alt="Hipertensión" style="width: 100%; height: auto; display: block; position: relative; z-index: 1;" />
+                            <div style="position: relative; width: 95vw; max-width: 1200px; aspect-ratio: 4/3; background: transparent; display: flex; align-items: center; justify-content: center;">
+                                <img src="assets/img/hipert.png" alt="Hipertensión" style="max-width: 88%; max-height: 88%; object-fit: contain; position: absolute; left: 6%; top: 6%; z-index: 1; background: white; border-radius: 2%" />
                                 <img src="assets/img/ipad-marco.png" alt="iPad marco" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;" />
                                 <span id="close-overlay" style="position:absolute;top:10px;right:20px;font-size:2.5rem;color:white;cursor:pointer;z-index:10000;">&times;</span>
                             </div>
