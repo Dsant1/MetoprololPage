@@ -89,10 +89,6 @@
   box-sizing: border-box;
 }
 
-#equipo {
-  display: block;
-  scroll-margin-top: 200px;
-}
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
