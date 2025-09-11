@@ -1,3 +1,20 @@
+// Efecto de focus/ampliar imagen de ipad
+document.addEventListener('DOMContentLoaded', function() {
+    var ipad = document.getElementById('ipad-container');
+    var overlay = document.getElementById('ipad-overlay');
+    var closeBtn = document.getElementById('close-overlay');
+    if(ipad && overlay && closeBtn) {
+        ipad.addEventListener('click', function() {
+            overlay.style.display = 'flex';
+        });
+        closeBtn.addEventListener('click', function() {
+            overlay.style.display = 'none';
+        });
+        overlay.addEventListener('click', function(e) {
+            if(e.target === overlay) overlay.style.display = 'none';
+        });
+    }
+});
 /*!
 * Start Bootstrap - Grayscale v7.0.6 (https://startbootstrap.com/theme/grayscale)
 * Copyright 2013-2023 Start Bootstrap
