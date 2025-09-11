@@ -93,7 +93,7 @@
 
 #equipo {
   display: block;
-  scroll-margin-top: 100px;
+  scroll-margin-top: 130px;
 }
 @media (prefers-reduced-motion: no-preference) {
   :root {
