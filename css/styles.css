@@ -11473,10 +11473,16 @@ body {
 
 .contact-section {
   padding-top: 5rem;
+  background: #fff;
+  min-height: 400px;
+  position: relative;
+  z-index: 1;
 }
 .contact-section .card {
   border: 0;
   border-bottom: 0.25rem solid #ED4453;
+  background: #fff;
+  box-shadow: 0 2px 16px #0001;
 }
 .contact-section .card h4, .contact-section .card .h4 {
   font-size: 0.8rem;
@@ -11517,5 +11523,10 @@ body {
   }
 }
 .footer {
-  padding: 5rem 0;
+  padding: 3rem 0 1.5rem 0;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  font-size: 1rem;
+  border-top: 1px solid #eaeaea;
 }
