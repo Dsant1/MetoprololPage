@@ -1,4 +1,60 @@
 @charset "UTF-8";
+/* Carrusel de tarjetas comerciales tipo focus */
+.carrusel-tarjetas-comercial {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  position: relative;
+}
+.carrusel-tarjetas-track {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.carrusel-tarjeta {
+  transition: transform 0.4s, box-shadow 0.4s, opacity 0.4s;
+  opacity: 0.7;
+  z-index: 1;
+}
+.carrusel-tarjeta.focus {
+  transform: scale(1.12) translateY(-12px);
+  box-shadow: 0 0 0 4px #a16468, 0 4px 24px #0002;
+  opacity: 1;
+  z-index: 2;
+}
+.carrusel-tarjeta:not(.focus) {
+  filter: blur(0.5px);
+}
+.carrusel-tarjetas-comercial .carousel-control-prev,
+.carrusel-tarjetas-comercial .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: #fff8;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+.carrusel-tarjetas-comercial .carousel-control-prev {
+  left: -1.5rem;
+}
+.carrusel-tarjetas-comercial .carousel-control-next {
+  right: -1.5rem;
+}
+@media (max-width: 700px) {
+  .carrusel-tarjeta {
+    width: 13rem !important;
+  }
+  .carrusel-tarjetas-comercial {
+    max-width: 98vw;
+  }
+}
+
 .galeria-hover-comercial {
   position: relative;
   overflow: hidden;

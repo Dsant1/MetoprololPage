@@ -1,3 +1,33 @@
+// Carrusel de tarjetas comerciales tipo focus
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.carrusel-tarjetas-track');
+    const cards = document.querySelectorAll('.carrusel-tarjeta');
+    const prevBtn = document.getElementById('carruselComercialPrev');
+    const nextBtn = document.getElementById('carruselComercialNext');
+    let focusIndex = 1;
+    function updateFocus() {
+        cards.forEach((card, i) => {
+            card.classList.toggle('focus', i === focusIndex);
+        });
+        // Centrar la tarjeta enfocada
+        if(cards[focusIndex]) {
+            cards[focusIndex].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+        }
+    }
+    function moveFocus(dir) {
+        focusIndex += dir;
+        if(focusIndex < 0) focusIndex = cards.length-1;
+        if(focusIndex >= cards.length) focusIndex = 0;
+        updateFocus();
+    }
+    if(prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', ()=>moveFocus(-1));
+        nextBtn.addEventListener('click', ()=>moveFocus(1));
+    }
+    // Auto avance
+    setInterval(()=>moveFocus(1), 3500);
+    updateFocus();
+});
 // Efecto de focus/ampliar imagen de ipad
 document.addEventListener('DOMContentLoaded', function() {
     var ipad = document.getElementById('ipad-container');
