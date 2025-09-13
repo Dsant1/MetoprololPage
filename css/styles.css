@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Carrusel de nombres comerciales (categoría 4) */
 .galeria-hover-comercial {
   position: relative;
@@ -37,7 +38,8 @@
   filter: brightness(0.7) blur(1px);
   transform: scale(1.05);
 }
-@charset "UTF-8";
+
+
 /* Galería de presentaciones de metoprolol */
 .galeria-hover {
   position: relative;
