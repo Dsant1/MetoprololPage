@@ -16,10 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.classList.add('right');
             }
         });
-        // Centrar la tarjeta enfocada
-        if(cards[focusIndex]) {
-            cards[focusIndex].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-        }
+        // Ya no forzar scroll para evitar que la página salte
     }
     function moveFocus(dir) {
         focusIndex += dir;
