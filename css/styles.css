@@ -1,3 +1,42 @@
+/* Carrusel de nombres comerciales (categoría 4) */
+.galeria-hover-comercial {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  z-index: 1;
+}
+.galeria-hover-comercial:hover, .galeria-hover-comercial:focus-within {
+  box-shadow: 0 0 0 4px #a1646833, 0 4px 24px #0002;
+  transform: translateY(-12px) scale(1.04);
+  z-index: 2;
+}
+.galeria-hover-info-comercial {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(100, 161, 157, 0.97);
+  color: #fff;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  font-size: 1rem;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.galeria-hover-comercial:hover .galeria-hover-info-comercial, .galeria-hover-comercial:focus-within .galeria-hover-info-comercial {
+  opacity: 1;
+  pointer-events: auto;
+}
+.galeria-hover-comercial .card-img-top {
+  transition: filter 0.3s, transform 0.3s;
+}
+.galeria-hover-comercial:hover .card-img-top, .galeria-hover-comercial:focus-within .card-img-top {
+  filter: brightness(0.7) blur(1px);
+  transform: scale(1.05);
+}
 @charset "UTF-8";
 /* Galería de presentaciones de metoprolol */
 .galeria-hover {

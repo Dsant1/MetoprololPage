@@ -119,9 +119,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row gx-4 gy-4 mb-5 justify-content-center" id="presentaciones-meto">
+                <!-- Fila horizontal de categorías 1 a 3 -->
+                <div class="row gx-4 gy-4 mb-4 justify-content-center" id="presentaciones-meto">
                     <!-- Tabletas de liberación inmediata -->
-                    <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
                         <div class="card h-100 shadow-sm border-0 galeria-hover">
                             <img src="assets/img/demo-image-01.jpg" class="card-img-top" alt="Tabletas de liberación inmediata">
                             <div class="card-body text-center">
@@ -136,7 +137,7 @@
                         </div>
                     </div>
                     <!-- Tabletas de liberación prolongada -->
-                    <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
                         <div class="card h-100 shadow-sm border-0 galeria-hover">
                             <img src="assets/img/demo-image-02.jpg" class="card-img-top" alt="Tabletas de liberación prolongada">
                             <div class="card-body text-center">
@@ -151,7 +152,7 @@
                         </div>
                     </div>
                     <!-- Presentación inyectable -->
-                    <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
                         <div class="card h-100 shadow-sm border-0 galeria-hover">
                             <img src="assets/img/demo-image-0.jpg" class="card-img-top" alt="Presentación inyectable">
                             <div class="card-body text-center">
@@ -165,91 +166,87 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Nombres comerciales frecuentes -->
-                    <div class="col-12 col-sm-12 col-lg-3">
-                        <div class="row g-2">
-                            <div class="col-6 col-lg-12">
-                                <div class="card h-100 shadow-sm border-0 galeria-hover">
-                                    <img src="assets/img/demo-image-01.jpg" class="card-img-top" alt="Betaloc® / Betaloc Zok®">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title mb-1">Betaloc® / Betaloc Zok®</h6>
-                                        <p class="card-text small text-muted">Nombres comerciales</p>
-                                    </div>
-                                    <div class="galeria-hover-info">
-                                        <p>Betaloc® / Betaloc Zok® (puede variar según país/laboratorio)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-12">
-                                <div class="card h-100 shadow-sm border-0 galeria-hover">
-                                    <img src="assets/img/demo-image-02.jpg" class="card-img-top" alt="Lopressor®">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title mb-1">Lopressor®</h6>
-                                        <p class="card-text small text-muted">Nombre comercial</p>
-                                    </div>
-                                    <div class="galeria-hover-info">
-                                        <p>Lopressor® (puede variar según país/laboratorio)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-12">
-                                <div class="card h-100 shadow-sm border-0 galeria-hover">
-                                    <img src="assets/img/demo-image-0.jpg" class="card-img-top" alt="Metoprolol Genfar®">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title mb-1">Metoprolol Genfar®</h6>
-                                        <p class="card-text small text-muted">Nombre comercial</p>
-                                    </div>
-                                    <div class="galeria-hover-info">
-                                        <p>Metoprolol Genfar® (puede variar según país/laboratorio)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-12">
-                                <div class="card h-100 shadow-sm border-0 galeria-hover">
-                                    <img src="assets/img/demo-image-01.jpg" class="card-img-top" alt="Metoprolol MK®">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title mb-1">Metoprolol MK®</h6>
-                                        <p class="card-text small text-muted">Nombre comercial</p>
-                                    </div>
-                                    <div class="galeria-hover-info">
-                                        <p>Metoprolol MK® (puede variar según país/laboratorio)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <!-- Project One Row-->
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
-                    <div class="col-lg-6">
-                        <div class="bg-personalized text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">¿Que es la hipertensión?</h4>
-                                    <a class="btn btn-danger" href="#about">Conoce más</a>
+                                <!-- Carrusel de nombres comerciales (categoría 4) -->
+                                <div class="row mb-5">
+                                    <div class="col-12">
+                                        <div id="carruselComercial" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+                                            <div class="carousel-indicators">
+                                                <button type="button" data-bs-target="#carruselComercial" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Betaloc"></button>
+                                                <button type="button" data-bs-target="#carruselComercial" data-bs-slide-to="1" aria-label="Lopressor"></button>
+                                                <button type="button" data-bs-target="#carruselComercial" data-bs-slide-to="2" aria-label="Genfar"></button>
+                                                <button type="button" data-bs-target="#carruselComercial" data-bs-slide-to="3" aria-label="MK"></button>
+                                            </div>
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="card galeria-hover-comercial mx-2" style="width: 16rem;">
+                                                            <img src="assets/img/demo-image-01.jpg" class="card-img-top" alt="Betaloc® / Betaloc Zok®">
+                                                            <div class="card-body text-center">
+                                                                <h6 class="card-title mb-1">Betaloc® / Betaloc Zok®</h6>
+                                                                <p class="card-text small text-muted">Nombres comerciales</p>
+                                                            </div>
+                                                            <div class="galeria-hover-info-comercial">
+                                                                <p>Betaloc® / Betaloc Zok® (puede variar según país/laboratorio)</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="card galeria-hover-comercial mx-2" style="width: 16rem;">
+                                                            <img src="assets/img/demo-image-02.jpg" class="card-img-top" alt="Lopressor®">
+                                                            <div class="card-body text-center">
+                                                                <h6 class="card-title mb-1">Lopressor®</h6>
+                                                                <p class="card-text small text-muted">Nombre comercial</p>
+                                                            </div>
+                                                            <div class="galeria-hover-info-comercial">
+                                                                <p>Lopressor® (puede variar según país/laboratorio)</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="card galeria-hover-comercial mx-2" style="width: 16rem;">
+                                                            <img src="assets/img/demo-image-0.jpg" class="card-img-top" alt="Metoprolol Genfar®">
+                                                            <div class="card-body text-center">
+                                                                <h6 class="card-title mb-1">Metoprolol Genfar®</h6>
+                                                                <p class="card-text small text-muted">Nombre comercial</p>
+                                                            </div>
+                                                            <div class="galeria-hover-info-comercial">
+                                                                <p>Metoprolol Genfar® (puede variar según país/laboratorio)</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="card galeria-hover-comercial mx-2" style="width: 16rem;">
+                                                            <img src="assets/img/demo-image-01.jpg" class="card-img-top" alt="Metoprolol MK®">
+                                                            <div class="card-body text-center">
+                                                                <h6 class="card-title mb-1">Metoprolol MK®</h6>
+                                                                <p class="card-text small text-muted">Nombre comercial</p>
+                                                            </div>
+                                                            <div class="galeria-hover-info-comercial">
+                                                                <p>Metoprolol MK® (puede variar según país/laboratorio)</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carruselComercial" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Anterior</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carruselComercial" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Siguiente</span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-personalized text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">¿Que es el metoprolol?</h4>
-                                    <a class="btn btn-danger" href="#about">Conoce más</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
+           
             
             
         </section>
