@@ -333,13 +333,20 @@
     <!-- 3Dmol.js CDN -->
     <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
     <script>
-    // Función para resaltar átomos por índice (ejemplo simple)
-    function highlightGroup(viewer, atomIndices, color) {
-        viewer.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-        viewer.setStyle({serial: atomIndices}, {stick: {radius:0.25, color: color}, sphere: {scale:0.3, color: color}});
-        viewer.zoomTo();
-        viewer.render();
-    }
+        // Función para resaltar átomos por índice (sin scroll ni focus)
+        function highlightGroup(viewer, atomIndices, color) {
+                viewer.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+                viewer.setStyle({serial: atomIndices}, {stick: {radius:0.25, color: color}, sphere: {scale:0.3, color: color}});
+                viewer.zoomTo();
+                viewer.render();
+                // Evitar scroll automático
+                setTimeout(()=>{
+                    if(viewer && viewer.container) {
+                        viewer.container.blur && viewer.container.blur();
+                        document.activeElement && document.activeElement.blur && document.activeElement.blur();
+                    }
+                }, 100);
+        }
     // 1. Anillo aromático (fenilo)
     let v1 = $3Dmol.createViewer("viewer-funcional-1", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v1, {}, function() {
