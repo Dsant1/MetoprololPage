@@ -50,58 +50,20 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 id="exper" class="text-white mb-4">Datos importantes del metoprolol</h2>
+                        <h2 id="exper" class="text-white mb-4">Visualización molecular del metoprolol</h2>
                     </div>
                 </div>
                 <div class="row justify-content-center my-5">
-                    <div class="col-12 col-md-8">
-                        <div id="sliderDatos" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators mb-4">
-                                <button type="button" data-bs-target="#sliderDatos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Número CAS"></button>
-                                <button type="button" data-bs-target="#sliderDatos" data-bs-slide-to="1" aria-label="Nombre IUPAC"></button>
-                                <button type="button" data-bs-target="#sliderDatos" data-bs-slide-to="2" aria-label="Fórmula molecular / Peso"></button>
-                                <button type="button" data-bs-target="#sliderDatos" data-bs-slide-to="3" aria-label="Propiedades físicas"></button>
-                                <button type="button" data-bs-target="#sliderDatos" data-bs-slide-to="4" aria-label="Sinónimos"></button>
-                                <button type="button" data-bs-target="#sliderDatos" data-bs-slide-to="5" aria-label="Formas de sal y solubilidad"></button>
-                            </div>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" id="cas">
-                                    <h4 class="text-white">Número CAS</h4>
-                                    <p class="text-white-50">51384-51-1</p>
-                                </div>
-                                <div class="carousel-item" id="iupac">
-                                    <h4 class="text-white">Nombre IUPAC</h4>
-                                    <p class="text-white-50">1-(isopropylamino)-3-[4-(2-methoxyethyl)phenoxy]propan-2-ol</p>
-                                </div>
-                                <div class="carousel-item" id="formula">
-                                    <h4 class="text-white">Fórmula molecular / Peso</h4>
-                                    <p class="text-white-50">C₁₅H₂₅NO₃ ; 267.36 g/mol</p>
-                                </div>
-                                <div class="carousel-item" id="fisicas">
-                                    <h4 class="text-white">Propiedades físicas</h4>
-                                    <p class="text-white-50">Sólido blanco a blanquecino; punto de fusión ~35 °C; densidad ~1.03 g/cm³; ligeramente soluble en DMSO, metanol o cloroformo; pKa ≈ 9.56</p>
-                                </div>
-                                <div class="carousel-item" id="sinonimos">
-                                    <h4 class="text-white">Sinónimos</h4>
-                                    <p class="text-white-50">(RS)-Metoprolol; Beatrolol; dl-Metoprolol; Spesicor; Seroken; Loresor; Metaprolol; Preblok</p>
-                                </div>
-                                <div class="carousel-item" id="sales">
-                                    <h4 class="text-white">Formas de sal y solubilidad</h4>
-                                    <p class="text-white-50">- Tartrato: alta solubilidad acuosa (~700 mg/mL)<br>- Succinato: menor solubilidad (~270 mg/mL), ideal para formulación de liberación prolongada</p>
-                                </div>
-                            </div>
-                            <div class="row mt-4">
-                                <div class="col d-flex justify-content-between align-items-center">
-                                    <button class="carousel-control-prev position-static" type="button" data-bs-target="#sliderDatos" data-bs-slide="prev" style="left:0;">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Anterior</span>
-                                    </button>
-                                    <button class="carousel-control-next position-static" type="button" data-bs-target="#sliderDatos" data-bs-slide="next" style="right:0;">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Siguiente</span>
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="col-12 col-md-6 mb-4">
+                        <div class="card bg-dark text-white shadow">
+                            <div class="card-header">Estructura 2D</div>
+                            <div id="viewer2d" style="width:100%;height:350px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-4">
+                        <div class="card bg-dark text-white shadow">
+                            <div class="card-header">Estructura 3D</div>
+                            <div id="viewer3d" style="width:100%;height:350px;"></div>
                         </div>
                     </div>
                 </div>
@@ -235,7 +197,67 @@
             
         </section>
         <!-- Signup-->
-     
+        <section class="about-section text-center" >
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 id="exper" class="text-white mb-4">Qué concluimos y por qué esta investigacion es relevante para nuestras carreras?</h2>
+                        <p class="text-white-50">
+                           Somos el equipo 2 del aula de Quimica organica A3, nuestro objetivo es caracterizar el metoprolol y estudiar su aplicación en la hipertensión.
+                        </p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4 d-flex align-items-stretch">
+                        <div class="card py-4 w-100 h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                <img src="assets/img/demo-image-01.jpg" alt="Nombre 1" class="img-fluid rounded-circle mb-3" style="width:120px;height:120px;object-fit:cover;" />
+                                <h4 class="text-uppercase m-0">Nombre completo 1</h4>
+                                <div class="text-muted small">Carrera 1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4 d-flex align-items-stretch">
+                        <div class="card py-4 w-100 h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                <img src="assets/img/demo-image-02.jpg" alt="Nombre 2" class="img-fluid rounded-circle mb-3" style="width:120px;height:120px;object-fit:cover;" />
+                                <h4 class="text-uppercase m-0">Nombre completo 2</h4>
+                                <div class="text-muted small">Carrera 2</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4 d-flex align-items-stretch">
+                        <div class="card py-4 w-100 h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                <img src="assets/img/demo-image-0.jpg" alt="Nombre 3" class="img-fluid rounded-circle mb-3" style="width:120px;height:120px;object-fit:cover;" />
+                                <h4 class="text-uppercase m-0">Nombre completo 3</h4>
+                                <div class="text-muted small">Carrera 3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4 d-flex align-items-stretch">
+                        <div class="card py-4 w-100 h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                <img src="assets/img/demo-image-01.jpg" alt="Nombre 4" class="img-fluid rounded-circle mb-3" style="width:120px;height:120px;object-fit:cover;" />
+                                <h4 class="text-uppercase m-0">Nombre completo 4</h4>
+                                <div class="text-muted small">Carrera 4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4 d-flex align-items-stretch">
+                        <div class="card py-4 w-100 h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                <img src="assets/img/demo-image-02.jpg" alt="Nombre 5" class="img-fluid rounded-circle mb-3" style="width:120px;height:120px;object-fit:cover;" />
+                                <h4 class="text-uppercase m-0">Nombre completo 5</h4>
+                                <div class="text-muted small">Carrera 5</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <img class="img-fluid" src="assets/img/ipad.png" alt="..." /> -->
+            </div>
+        </section>
         <!-- Contact-->
         <section class="contact-section bg-personalized">
             <div class="container px-4 px-lg-5">
@@ -284,4 +306,22 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+    <!-- 3Dmol.js CDN -->
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>
+    // Visualizador 2D
+    let viewer2d = $3Dmol.createViewer("viewer2d", {backgroundColor: "white"});
+    $3Dmol.download("assets/models/Structure2D_COMPOUND_CID_4171.sdf", viewer2d, {}, function() {
+        viewer2d.setStyle({}, {line: {color: 'black', linewidth: 2}});
+        viewer2d.zoomTo();
+        viewer2d.render();
+    });
+    // Visualizador 3D
+    let viewer3d = $3Dmol.createViewer("viewer3d", {backgroundColor: "white"});
+    $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", viewer3d, {}, function() {
+        viewer3d.setStyle({}, {stick: {radius:0.18}, sphere: {scale:0.23}});
+        viewer3d.zoomTo();
+        viewer3d.render();
+    });
+    </script>
 </html>
