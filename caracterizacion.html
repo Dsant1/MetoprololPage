@@ -341,25 +341,37 @@
     let v1 = $3Dmol.createViewer("viewer-funcional-1", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v1, {}, function() {
         // Oxígeno puente (1) y carbonos adyacentes (11: anillo, 10: cadena)
-        highlightGroup(v1, [1, 11, 10], '#64a19d');
+        v1.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+        v1.setStyle({serial: [1, 11, 10]}, {stick: {radius:0.25, color: '#64a19d'}, sphere: {scale:0.3, color: '#64a19d'}});
+        v1.zoomTo({serial: [1, 11, 10]});
+        v1.render();
     });
     // 2. Alcohol secundario
     let v2 = $3Dmol.createViewer("viewer-funcional-2", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v2, {}, function() {
         // Oxígeno (3), carbono 12 (alcohol)
-        highlightGroup(v2, [3, 12], '#e4c662');
+        v2.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+        v2.setStyle({serial: [3, 12]}, {stick: {radius:0.25, color: '#e4c662'}, sphere: {scale:0.3, color: '#e4c662'}});
+        v2.zoomTo({serial: [3, 12]});
+        v2.render();
     });
     // 3. Amina secundaria
     let v3 = $3Dmol.createViewer("viewer-funcional-3", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v3, {}, function() {
         // Nitrógeno (4), carbonos 5 y 6 (isopropilo), hidrógeno del NH (24)
-        highlightGroup(v3, [4, 5, 6, 24], '#1cabc4');
+        v3.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+        v3.setStyle({serial: [4, 5, 6, 24]}, {stick: {radius:0.25, color: '#1cabc4'}, sphere: {scale:0.3, color: '#1cabc4'}});
+        v3.zoomTo({serial: [4, 5, 6, 24]});
+        v3.render();
     });
     // 4. Anillo aromático (bencénico)
     let v4 = $3Dmol.createViewer("viewer-funcional-4", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v4, {}, function() {
         // Átomos del anillo bencénico: 14, 15, 16, 17, 11, 13
-        highlightGroup(v4, [14, 15, 16, 17, 11, 13], '#a16468');
+        v4.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+        v4.setStyle({serial: [14, 15, 16, 17, 11, 13]}, {stick: {radius:0.25, color: '#a16468'}, sphere: {scale:0.3, color: '#a16468'}});
+        v4.zoomTo({serial: [14, 15, 16, 17, 11, 13]});
+        v4.render();
     });
     </script>
 </html>

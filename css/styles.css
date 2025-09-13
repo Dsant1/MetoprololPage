@@ -1,3 +1,13 @@
+/* Asegura que los títulos de las tarjetas sean visibles y tengan contraste */
+.galeria-hover-comercial .card-header {
+  background: #64a19d !important;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+  z-index: 2;
+}
 @charset "UTF-8";
 /* Carrusel tipo showcase visual */
 .carrusel-tarjetas-track {
