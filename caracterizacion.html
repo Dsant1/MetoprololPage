@@ -348,34 +348,35 @@
                 }, 100);
         }
     // 1. Anillo aromático (fenilo)
+    // 1. Anillo aromático (fenilo)
     let v1 = $3Dmol.createViewer("viewer-funcional-1", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v1, {}, function() {
-        // Ejemplo: átomos 7-12 (anillo bencénico, ajustar según modelo)
-        highlightGroup(v1, [7,8,9,10,11,12], '#a16468');
+        // Átomos del anillo bencénico (fenilo): 14, 15, 16, 17, 11, 13
+        highlightGroup(v1, [14, 15, 16, 17, 11, 13], '#a16468');
     });
     // 2. Éter arílico (fenoxi)
     let v2 = $3Dmol.createViewer("viewer-funcional-2", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v2, {}, function() {
-        // Ejemplo: oxígeno puente y carbonos adyacentes (ajustar)
-        highlightGroup(v2, [6,7,13], '#64a19d');
+        // Oxígeno puente (1) y carbonos adyacentes (11: anillo, 10: cadena)
+        highlightGroup(v2, [1, 11, 10], '#64a19d');
     });
     // 3. Éter alquílico (metoxi)
     let v3 = $3Dmol.createViewer("viewer-funcional-3", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v3, {}, function() {
-        // Ejemplo: oxígeno y metilo (ajustar)
-        highlightGroup(v3, [18,19,20], '#d63384');
+        // Oxígeno (2), carbono 19 (metilo), carbono 18 (etilo)
+        highlightGroup(v3, [2, 18, 19], '#d63384');
     });
     // 4. Alcohol secundario
     let v4 = $3Dmol.createViewer("viewer-funcional-4", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v4, {}, function() {
-        // Ejemplo: carbono y oxígeno del alcohol (ajustar)
-        highlightGroup(v4, [3,4], '#e4c662');
+        // Oxígeno (3), carbono 12 (alcohol)
+        highlightGroup(v4, [3, 12], '#e4c662');
     });
     // 5. Amina secundaria
     let v5 = $3Dmol.createViewer("viewer-funcional-5", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v5, {}, function() {
-        // Ejemplo: nitrógeno y carbonos isopropilo (ajustar)
-        highlightGroup(v5, [1,2,21,22], '#1cabc4');
+        // Nitrógeno (4), carbonos 5 y 6 (isopropilo)
+        highlightGroup(v5, [4, 5, 6], '#1cabc4');
     });
     </script>
 </html>
