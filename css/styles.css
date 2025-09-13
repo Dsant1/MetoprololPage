@@ -1,4 +1,57 @@
 @charset "UTF-8";
+/* Carrusel tipo showcase visual */
+.carrusel-tarjetas-track {
+  overflow-x: hidden !important;
+  padding-bottom: 2rem;
+}
+.carrusel-tarjeta {
+  transition: transform 0.5s, box-shadow 0.5s, opacity 0.5s, filter 0.5s;
+  opacity: 0.7;
+  z-index: 1;
+  filter: blur(0.5px) grayscale(0.2);
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 12px #0001;
+}
+.carrusel-tarjeta.focus {
+  transform: scale(1.15) rotate(0deg) translateY(-18px);
+  box-shadow: 0 0 0 4px #a16468, 0 8px 32px #0003;
+  opacity: 1;
+  z-index: 2;
+  filter: none;
+}
+.carrusel-tarjeta.left {
+  transform: scale(0.95) rotate(-10deg) translateY(10px);
+  opacity: 0.6;
+  z-index: 1;
+}
+.carrusel-tarjeta.right {
+  transform: scale(0.95) rotate(10deg) translateY(10px);
+  opacity: 0.6;
+  z-index: 1;
+}
+.carrusel-tarjeta:not(.focus):not(.left):not(.right) {
+  opacity: 0.3;
+  filter: blur(1.5px) grayscale(0.5);
+}
+.carrusel-tarjetas-comercial .carousel-control-prev,
+.carrusel-tarjetas-comercial .carousel-control-next {
+  top: 55%;
+  background: #fff8;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  box-shadow: 0 2px 8px #0002;
+}
+.carrusel-tarjetas-comercial .carousel-control-prev {
+  left: -1.5rem;
+}
+.carrusel-tarjetas-comercial .carousel-control-next {
+  right: -1.5rem;
+}
+.carrusel-tarjetas-comercial::-webkit-scrollbar {
+  display: none;
+}
+
 /* Carrusel de tarjetas comerciales tipo focus */
 .carrusel-tarjetas-comercial {
   width: 100%;

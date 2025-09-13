@@ -1,4 +1,4 @@
-// Carrusel de tarjetas comerciales tipo focus
+// Carrusel de tarjetas comerciales tipo showcase
 document.addEventListener('DOMContentLoaded', function() {
     const track = document.querySelector('.carrusel-tarjetas-track');
     const cards = document.querySelectorAll('.carrusel-tarjeta');
@@ -7,7 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let focusIndex = 1;
     function updateFocus() {
         cards.forEach((card, i) => {
-            card.classList.toggle('focus', i === focusIndex);
+            card.classList.remove('focus', 'left', 'right');
+            if (i === focusIndex) {
+                card.classList.add('focus');
+            } else if (i === (focusIndex - 1 + cards.length) % cards.length) {
+                card.classList.add('left');
+            } else if (i === (focusIndex + 1) % cards.length) {
+                card.classList.add('right');
+            }
         });
         // Centrar la tarjeta enfocada
         if(cards[focusIndex]) {
