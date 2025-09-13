@@ -1,49 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">PROYECTO DE EJECUCIÓN </a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">INICIO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">NOSOTROS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">NUESTRO PROFESOR</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">METOPROLOL</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Descripcion del medicamento </h2>
-                        <a class="btn btn-danger" href="#exper">Conoce másy</a>
-                    </div>
-                </div>
-            </div>
+                                <div class="row mb-5">
+                                    <div class="col-12">
+                                        <div class="featured-text text-center text-lg-left mb-3">
+                                            <h5 class="mb-0">Hibridación de los carbonos en metoprolol</h5>
+                                        </div>
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div id="viewer-hibridacion" style="width: 420px; height: 320px; margin-bottom: 1.5rem;"></div>
+                                            <div class="table-responsive" style="max-width: 600px;">
+                                                <table class="table table-bordered table-hover align-middle text-center" id="tabla-hibridacion">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Átomo</th>
+                                                            <th>Hibridación</th>
+                                                            <th>Ángulo</th>
+                                                            <th>Tipo de enlace</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-serial="1"><td>C1</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
+                                                        <tr data-serial="2"><td>C2</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
+                                                        <tr data-serial="3"><td>C3</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
+                                                        <tr data-serial="4"><td>C4</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
+                                                        <tr data-serial="5"><td>C5</td><td>sp3</td><td>120º</td><td>Doble</td></tr>
+                                                        <tr data-serial="6"><td>C6</td><td>sp3</td><td>120º</td><td>Doble</td></tr>
+                                                        <tr data-serial="7"><td>C7</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="8"><td>C8</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="9"><td>C9</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="10"><td>C10</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="11"><td>C11</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="12"><td>C12</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="13"><td>C13</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="14"><td>C14</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                        <tr data-serial="15"><td>C15</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
         </header>
         <!-- About-->
         <section class="about-section text-center" id="about">
@@ -304,6 +298,43 @@
     <!-- 3Dmol.js CDN -->
     <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
     <script>
+        // Tabla interactiva de hibridación
+        let viewerHib = $3Dmol.createViewer("viewer-hibridacion", {backgroundColor: "white"});
+        $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", viewerHib, {}, function() {
+            viewerHib.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+            viewerHib.zoomTo();
+            viewerHib.render();
+        });
+
+        // Resaltado interactivo
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabla = document.getElementById('tabla-hibridacion');
+            let lastSerial = null;
+            tabla.querySelectorAll('tbody tr').forEach(tr => {
+                tr.addEventListener('mouseenter', function() {
+                    const serial = parseInt(this.getAttribute('data-serial'));
+                    if (!serial) return;
+                    lastSerial = serial;
+                    viewerHib.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+                    viewerHib.setStyle({serial: serial}, {stick: {radius:0.28, color: '#e74c3c'}, sphere: {scale:0.35, color: '#e74c3c'}});
+                    viewerHib.zoomTo({serial: serial});
+                    viewerHib.render();
+                });
+                tr.addEventListener('mouseleave', function() {
+                    viewerHib.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+                    viewerHib.zoomTo();
+                    viewerHib.render();
+                });
+                tr.addEventListener('click', function() {
+                    const serial = parseInt(this.getAttribute('data-serial'));
+                    if (!serial) return;
+                    const hib = this.children[1].textContent;
+                    const ang = this.children[2].textContent;
+                    const enlace = this.children[3].textContent;
+                    alert(`Átomo: C${serial}\nHibridación: ${hib}\nÁngulo: ${ang}\nTipo de enlace: ${enlace}`);
+                });
+            });
+        });
     // Visualizador 2D
     let viewer2d = $3Dmol.createViewer("viewer2d", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Structure2D_COMPOUND_CID_4171.sdf", viewer2d, {}, function() {
