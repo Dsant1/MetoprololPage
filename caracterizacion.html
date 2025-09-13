@@ -260,69 +260,55 @@
                     <h3>COSAS QUE TE PODRIAN INTERESAR</h3>
                 </div>
                 <div class="row gx-4 gx-lg-5">
-                                <!-- Tabla interactiva de hibridación de carbonos -->
-                                <div class="row mb-5">
-                                    <div class="col-12">
-                                        <div class="featured-text text-center text-lg-left mb-3">
-                                            <h5 class="mb-0">Hibridación de los carbonos en metoprolol</h5>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover align-middle" id="tabla-hibridacion">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Átomo</th>
-                                                        <th>Hibridación</th>
-                                                        <th>Ángulo</th>
-                                                        <th>Tipo de enlace</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr data-serial="1"><td>C1</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                                    <tr data-serial="2"><td>C2</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                                    <tr data-serial="3"><td>C3</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                                    <tr data-serial="4"><td>C4</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                                    <tr data-serial="5"><td>C5</td><td>sp3</td><td>120º</td><td>Doble</td></tr>
-                                                    <tr data-serial="6"><td>C6</td><td>sp3</td><td>120º</td><td>Doble</td></tr>
-                                                    <tr data-serial="7"><td>C7</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="8"><td>C8</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="9"><td>C9</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="10"><td>C10</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="11"><td>C11</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="12"><td>C12</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="13"><td>C13</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="14"><td>C14</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                    <tr data-serial="15"><td>C15</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-        // Tabla interactiva de hibridación: resalta átomo en el viewer 3D al pasar el mouse
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabla = document.getElementById('tabla-hibridacion');
-            const viewer3d = window.viewer3d || $3Dmol.createViewer("viewer3d", {backgroundColor: "white"});
-            let lastHighlighted = null;
-            function highlightAtom(serial) {
-                viewer3d.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-                viewer3d.setStyle({serial: parseInt(serial)}, {stick: {radius:0.28, color: '#e74c3c'}, sphere: {scale:0.35, color: '#e74c3c'}});
-                viewer3d.zoomTo({serial: parseInt(serial)});
-                viewer3d.render();
-            }
-            if(tabla) {
-                tabla.querySelectorAll('tbody tr').forEach(tr => {
-                    tr.addEventListener('mouseenter', function() {
-                        highlightAtom(this.dataset.serial);
-                        lastHighlighted = this;
-                        this.classList.add('table-primary');
-                    });
-                    tr.addEventListener('mouseleave', function() {
-                        viewer3d.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-                        viewer3d.render();
-                        if(lastHighlighted) lastHighlighted.classList.remove('table-primary');
-                    });
-                });
-            }
-        });
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-newspaper text-danger mb-2"></i>
+                                <h4 class="text-uppercase m-0">ARTICULOS RELACIONADOS</h4>
+                                <hr class="my-4 mx-auto" />
+                                <a class="btn btn-danger" href="#about">Clic acá</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-magnifying-glass text-danger mb-2"></i>
+                                <h4 class="text-uppercase m-0">fUENTES CONSULTADAS</h4>
+                                <hr class="my-4 mx-auto" />
+                                <a class="btn btn-danger" href="#about">Clic acá</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-personalized small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+    <!-- 3Dmol.js CDN -->
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>
+    // Visualizador 2D
+    let viewer2d = $3Dmol.createViewer("viewer2d", {backgroundColor: "white"});
+    $3Dmol.download("assets/models/Structure2D_COMPOUND_CID_4171.sdf", viewer2d, {}, function() {
+        viewer2d.setStyle({}, {line: {color: 'black', linewidth: 2}});
+        viewer2d.zoomTo();
         viewer2d.render();
     });
     // Visualizador 3D
