@@ -82,58 +82,47 @@
                     </div>
                 </div>
                 <div class="row gx-4 gy-4 mb-4 justify-content-center" id="grupos-funcionales-meto">
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
                         <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
                             <div class="card-header text-center bg-personalized text-white">
-                                <h5 class="mb-0">Anillo aromático (fenilo)</h5>
+                                <h5 class="mb-0">Éter aromático</h5>
                             </div>
                             <div id="viewer-funcional-1" style="width:100%;height:220px;"></div>
                             <div class="card-body">
-                                <p class="small">Anillo bencénico unido vía un oxígeno (fenoxi). (aromático, Csp²).</p>
+                                <p class="small">Enlace oxígeno entre el anillo bencénico y la cadena lateral (Ar–O–R).</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
-                        <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
-                            <div class="card-header text-center bg-personalized text-white">
-                                <h5 class="mb-0">Éter arílico (fenoxi)</h5>
-                            </div>
-                            <div id="viewer-funcional-2" style="width:100%;height:220px;"></div>
-                            <div class="card-body">
-                                <p class="small">Enlace Ar–O– (oxígeno que conecta el anillo fenílico con la cadena).</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
-                        <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
-                            <div class="card-header text-center bg-personalized text-white">
-                                <h5 class="mb-0">Éter alquílico (metoxi)</h5>
-                            </div>
-                            <div id="viewer-funcional-3" style="width:100%;height:220px;"></div>
-                            <div class="card-body">
-                                <p class="small">Grupo –O–CH₃ (metoxi) en la cadena lateral 2-metoxietil.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
                         <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
                             <div class="card-header text-center bg-personalized text-white">
                                 <h5 class="mb-0">Alcohol secundario</h5>
                             </div>
-                            <div id="viewer-funcional-4" style="width:100%;height:220px;"></div>
+                            <div id="viewer-funcional-2" style="width:100%;height:220px;"></div>
                             <div class="card-body">
-                                <p class="small">Grupo –CHOH– en la cadena propanólica (propan-2-ol). (hidroxilo unido a Csp³).</p>
+                                <p class="small">Grupo –CHOH– en la cadena lateral (hidroxilo unido a carbono secundario).</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
                         <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
                             <div class="card-header text-center bg-personalized text-white">
                                 <h5 class="mb-0">Amina secundaria</h5>
                             </div>
-                            <div id="viewer-funcional-5" style="width:100%;height:220px;"></div>
+                            <div id="viewer-funcional-3" style="width:100%;height:220px;"></div>
                             <div class="card-body">
-                                <p class="small">Grupo –NH– unido a un grupo isopropilo (–NHC(CH₃)₂) (nitrógeno secundario, básico, protonable).</p>
+                                <p class="small">Grupo –NH– en la cadena lateral (nitrógeno unido a dos carbonos).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+                        <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
+                            <div class="card-header text-center bg-personalized text-white">
+                                <h5 class="mb-0">Anillo aromático (bencénico)</h5>
+                            </div>
+                            <div id="viewer-funcional-4" style="width:100%;height:220px;"></div>
+                            <div class="card-body">
+                                <p class="small">Estructura cíclica de seis carbonos con dobles enlaces conjugados (benceno).</p>
                             </div>
                         </div>
                     </div>
@@ -348,35 +337,29 @@
                 }, 100);
         }
     // 1. Anillo aromático (fenilo)
-    // 1. Anillo aromático (fenilo)
+    // 1. Éter aromático (Ar–O–R)
     let v1 = $3Dmol.createViewer("viewer-funcional-1", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v1, {}, function() {
-        // Átomos del anillo bencénico (fenilo): 14, 15, 16, 17, 11, 13
-        highlightGroup(v1, [14, 15, 16, 17, 11, 13], '#a16468');
+        // Oxígeno puente (1) y carbonos adyacentes (11: anillo, 10: cadena)
+        highlightGroup(v1, [1, 11, 10], '#64a19d');
     });
-    // 2. Éter arílico (fenoxi)
+    // 2. Alcohol secundario
     let v2 = $3Dmol.createViewer("viewer-funcional-2", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v2, {}, function() {
-        // Oxígeno puente (1) y carbonos adyacentes (11: anillo, 10: cadena)
-        highlightGroup(v2, [1, 11, 10], '#64a19d');
+        // Oxígeno (3), carbono 12 (alcohol)
+        highlightGroup(v2, [3, 12], '#e4c662');
     });
-    // 3. Éter alquílico (metoxi)
+    // 3. Amina secundaria
     let v3 = $3Dmol.createViewer("viewer-funcional-3", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v3, {}, function() {
-        // Oxígeno (2), carbono 19 (metilo), carbono 18 (etilo)
-        highlightGroup(v3, [2, 18, 19], '#d63384');
+        // Nitrógeno (4), carbonos 5 y 6 (isopropilo), hidrógeno del NH (24)
+        highlightGroup(v3, [4, 5, 6, 24], '#1cabc4');
     });
-    // 4. Alcohol secundario
+    // 4. Anillo aromático (bencénico)
     let v4 = $3Dmol.createViewer("viewer-funcional-4", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v4, {}, function() {
-        // Oxígeno (3), carbono 12 (alcohol)
-        highlightGroup(v4, [3, 12], '#e4c662');
-    });
-    // 5. Amina secundaria
-    let v5 = $3Dmol.createViewer("viewer-funcional-5", {backgroundColor: "white"});
-    $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v5, {}, function() {
-        // Nitrógeno (4), carbonos 5 y 6 (isopropilo), hidrógeno del NH (24)
-        highlightGroup(v5, [4, 5, 6, 24], '#1cabc4');
+        // Átomos del anillo bencénico: 14, 15, 16, 17, 11, 13
+        highlightGroup(v4, [14, 15, 16, 17, 11, 13], '#a16468');
     });
     </script>
 </html>
