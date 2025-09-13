@@ -1,5 +1,42 @@
-
 @charset "UTF-8";
+/* Galería de presentaciones de metoprolol */
+.galeria-hover {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.galeria-hover:hover, .galeria-hover:focus-within {
+  box-shadow: 0 0 0 4px #a1646833, 0 4px 24px #0002;
+  z-index: 2;
+}
+.galeria-hover-info {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(100, 161, 157, 0.95);
+  color: #fff;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  font-size: 1rem;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.galeria-hover:hover .galeria-hover-info, .galeria-hover:focus-within .galeria-hover-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+.galeria-hover .card-img-top {
+  transition: filter 0.3s, transform 0.3s;
+}
+.galeria-hover:hover .card-img-top, .galeria-hover:focus-within .card-img-top {
+  filter: brightness(0.7) blur(1px);
+  transform: scale(1.05);
+}
+
 /*!
 * Start Bootstrap - Grayscale v7.0.6 (https://startbootstrap.com/theme/grayscale)
 * Copyright 2013-2023 Start Bootstrap
