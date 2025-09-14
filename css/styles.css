@@ -81,10 +81,58 @@
   padding-bottom: 0.5rem;
   margin-bottom: 1.2rem;
 }
+/* Tabla ocupa 100% del ancho en desktop, sin scroll horizontal */
 #tabla-hibridacion {
-  min-width: 900px;
-  width: max-content;
+  width: 100%;
+  min-width: unset;
+  table-layout: fixed;
   margin-bottom: 0;
+  word-break: break-word;
+}
+/* Columnas ajustadas para que todo quepa */
+#tabla-hibridacion th, #tabla-hibridacion td {
+  font-size: 0.97rem;
+  padding: 0.38rem 0.4rem;
+  white-space: normal;
+}
+@media (max-width: 900px) {
+  #tabla-hibridacion th, #tabla-hibridacion td {
+    font-size: 0.93rem;
+    padding: 0.32rem 0.3rem;
+  }
+}
+@media (max-width: 700px) {
+  #tabla-hibridacion, #tabla-hibridacion thead, #tabla-hibridacion tbody, #tabla-hibridacion tr, #tabla-hibridacion th, #tabla-hibridacion td {
+    display: block;
+    width: 100%;
+    min-width: unset;
+    box-sizing: border-box;
+  }
+  #tabla-hibridacion thead {
+    display: none;
+  }
+  #tabla-hibridacion tr {
+    margin-bottom: 1.2rem;
+    border: 1px solid #eee;
+    border-radius: 0.7rem;
+    background: #fff;
+    box-shadow: 0 2px 8px #0001;
+    padding: 0.7rem 0.5rem;
+  }
+  #tabla-hibridacion td {
+    padding: 0.35rem 0.7rem;
+    font-size: 1.01rem;
+    border: none;
+    border-bottom: 1px solid #f2f2f2;
+    position: relative;
+  }
+  #tabla-hibridacion td:before {
+    content: attr(data-label) ": ";
+    font-weight: bold;
+    color: #a16468;
+    display: block;
+    margin-bottom: 2px;
+  }
 }
 /* Tabla de hibridación: compacta en desktop, tarjetas en móvil */
 #tabla-hibridacion th, #tabla-hibridacion td {
