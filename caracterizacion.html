@@ -142,7 +142,16 @@
                     <div class="col-12 col-lg-7 mb-4">
                         <div class="table-responsive">
                         <div class="tabla-scroll-x">
-                            <table class="table table-hover table-bordered align-middle bg-white" id="tabla-hibridacion">
+                            <table class="table table-hover table-bordered align-middle bg-white w-100" id="tabla-hibridacion">
+                        <!-- Overlay para estructura seleccionada -->
+                        <div id="overlay-estructura">
+                            <div class="overlay-content">
+                                <button class="close-btn" id="close-overlay" title="Cerrar">&times;</button>
+                                <div class="overlay-title" id="overlay-titulo"></div>
+                                <div class="overlay-viewer" id="overlay-viewer"></div>
+                                <div class="overlay-info" id="overlay-info"></div>
+                            </div>
+                        </div>
                                 <thead class="table-light">
                                     <tr>
                                         <th>Átomo</th>
@@ -322,17 +331,33 @@
                 limpiarResaltado();
             });
             fila.addEventListener('click', function() {
+                // Mostrar overlay con estructura resaltada
                 const info = this.querySelectorAll('td');
+                const serial = this.dataset.serial;
+                document.getElementById('overlay-titulo').innerText = info[0].innerText;
                 let detalle = '';
-                detalle += `Átomo(s): ${info[0].innerText}\n`;
-                detalle += `Fragmento/posición: ${info[1].innerText}\n`;
-                detalle += `Hibridación: ${info[2].innerText}\n`;
-                detalle += `Clase: ${info[3].innerText}\n`;
-                detalle += `Ángulo: ${info[4].innerText}\n`;
-                detalle += `Tipo de enlace: ${info[5].innerText}\n`;
-                detalle += `Geometría: ${info[6].innerText}`;
-                alert(detalle);
+                detalle += `<b>Fragmento/posición:</b> ${info[1].innerText}<br>`;
+                detalle += `<b>Hibridación:</b> ${info[2].innerText}<br>`;
+                detalle += `<b>Clase:</b> ${info[3].innerText}<br>`;
+                detalle += `<b>Ángulo:</b> ${info[4].innerText}<br>`;
+                detalle += `<b>Tipo de enlace:</b> ${info[5].innerText}<br>`;
+                detalle += `<b>Geometría:</b> ${info[6].innerText}`;
+                document.getElementById('overlay-info').innerHTML = detalle;
+                // Crear visor 3Dmol.js en overlay
+                document.getElementById('overlay-viewer').innerHTML = '';
+                let ov = $3Dmol.createViewer('overlay-viewer', {backgroundColor: 'white'});
+                $3Dmol.download('assets/models/Conformer3D_COMPOUND_CID_4171.sdf', ov, {}, function() {
+                    ov.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+                    let serials = Array.isArray(serial) ? serial : (typeof serial === 'string' && serial.includes(',')) ? serial.split(',').map(s=>isNaN(s)?s.trim():Number(s)) : [serial];
+                    ov.setStyle({serial: serials}, {stick: {radius:0.28, color: '#e74c3c'}, sphere: {scale:0.35, color: '#e74c3c'}});
+                    ov.zoomTo({serial: serials});
+                    ov.render();
+                });
+                document.getElementById('overlay-estructura').classList.add('active');
             });
+        });
+        document.getElementById('close-overlay').addEventListener('click', function() {
+            document.getElementById('overlay-estructura').classList.remove('active');
         });
     });
     // Visualizador 2D

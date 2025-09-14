@@ -1,3 +1,77 @@
+/* Tabla ocupa todo el ancho en desktop */
+.tabla-scroll-x {
+  width: 100vw;
+  max-width: 100vw;
+  left: 50%;
+  right: 0;
+  position: relative;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 8px #0001;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.2rem;
+  overflow-x: auto !important;
+}
+
+/* Overlay para estructura seleccionada */
+#overlay-estructura {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30,30,40,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#overlay-estructura.active {
+  display: flex;
+}
+#overlay-estructura .overlay-content {
+  background: #fff;
+  border-radius: 1.2rem;
+  padding: 2.2rem 2.2rem 1.2rem 2.2rem;
+  box-shadow: 0 8px 32px #0005;
+  max-width: 95vw;
+  max-height: 90vh;
+  min-width: 320px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+#overlay-estructura .close-btn {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  font-size: 2.1rem;
+  color: #a16468;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+#overlay-estructura .overlay-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #a16468;
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+#overlay-estructura .overlay-viewer {
+  width: 350px;
+  height: 350px;
+  max-width: 80vw;
+  max-height: 60vh;
+  margin-bottom: 1.2rem;
+}
+#overlay-estructura .overlay-info {
+  font-size: 1.08rem;
+  color: #222;
+  text-align: center;
+}
 /* Forzar scroll horizontal visible para tablas anchas */
 .tabla-scroll-x {
   overflow-x: auto !important;
