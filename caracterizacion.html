@@ -61,107 +61,109 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mb-4">
-                        <div class="card bg-dark text-white shadow">
-                            <div class="card-header">Estructura 3D</div>
-                            <div id="viewer3d" style="width:100%;height:350px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Projects-->
-        <section class="projects-section bg-light" id="projects">
-            <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
-                <!-- Galería de presentaciones comunes del metoprolol -->
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <div class="featured-text text-center text-lg-left">
-                            <h3>Grupos funcionales presentes en el metoprolol</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row gx-4 gy-4 mb-4 justify-content-center" id="grupos-funcionales-meto">
-                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
-                        <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
-                            <div class="card-header text-center bg-personalized text-white">
-                                <h5 class="mb-0">Éter aromático</h5>
-                            </div>
-                            <div id="viewer-funcional-1" style="width:100%;height:220px;"></div>
-                            <div class="card-body">
-                                <p class="small">Enlace oxígeno entre el anillo bencénico y la cadena lateral (Ar–O–R).</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
-                        <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
-                            <div class="card-header text-center bg-personalized text-white">
-                                <h5 class="mb-0">Alcohol secundario</h5>
+                        <!-- Tabla y overlay fuera del container para ocupar 100vw -->
+                        <div style="width:100vw;max-width:100vw;position:relative;left:50%;right:0;transform:translateX(-50%);margin-bottom:2rem;">
+                            <div class="tabla-scroll-x" style="width:100vw;max-width:100vw;">
+                                <table class="table table-hover table-bordered align-middle bg-white w-100" id="tabla-hibridacion">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Átomo</th>
+                                            <th>Fragmento / posición</th>
+                                            <th>Hibridación</th>
+                                            <th>Clase (tipo de átomo)</th>
+                                            <th>Ángulos aproximados</th>
+                                            <th>Tipo de enlace principal</th>
+                                            <th>Geometría molecular</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-serial="1,2,3,4,5,6">
+                                            <td data-label="Átomo">C1–C6</td>
+                                            <td data-label="Fragmento / posición">Anillo aromático (benceno)</td>
+                                            <td data-label="Hibridación"><b>sp²</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Carbono aromático</td>
+                                            <td data-label="Ángulos aproximados">~120º</td>
+                                            <td data-label="Tipo de enlace principal">σ (C–C, C–H) + π (deslocalizado)</td>
+                                            <td data-label="Geometría molecular"><b>Trigonal plana</b></td>
+                                        </tr>
+                                        <tr data-serial="7,8,10,12,13,14,15">
+                                            <td data-label="Átomo">C7, C8, C10, C12, C13, C14, C15</td>
+                                            <td data-label="Fragmento / posición">C alifáticos (CH₂, CH, CH₃)</td>
+                                            <td data-label="Hibridación"><b>sp³</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Carbono saturado (alifático)</td>
+                                            <td data-label="Ángulos aproximados">~109.5º</td>
+                                            <td data-label="Tipo de enlace principal">σ (C–C, C–H, C–N, C–O)</td>
+                                            <td data-label="Geometría molecular"><b>Tetraédrica</b></td>
+                                        </tr>
+                                        <tr data-serial="9">
+                                            <td data-label="Átomo">C9</td>
+                                            <td data-label="Fragmento / posición">C del grupo metoxi (CH₃–O–)</td>
+                                            <td data-label="Hibridación"><b>sp³</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Carbono saturado (metilo)</td>
+                                            <td data-label="Ángulos aproximados">~109.5º</td>
+                                            <td data-label="Tipo de enlace principal">σ (C–H, C–O)</td>
+                                            <td data-label="Geometría molecular"><b>Tetraédrica</b></td>
+                                        </tr>
+                                        <tr data-serial="11">
+                                            <td data-label="Átomo">C11</td>
+                                            <td data-label="Fragmento / posición">C del alcohol secundario (–CHOH–)</td>
+                                            <td data-label="Hibridación"><b>sp³</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Carbono saturado con –OH</td>
+                                            <td data-label="Ángulos aproximados">~109.5º</td>
+                                            <td data-label="Tipo de enlace principal">σ (C–C, C–H, C–O)</td>
+                                            <td data-label="Geometría molecular"><b>Tetraédrica</b></td>
+                                        </tr>
+                                        <tr data-serial="N1">
+                                            <td data-label="Átomo">N1</td>
+                                            <td data-label="Fragmento / posición">Amina secundaria (–NH–)</td>
+                                            <td data-label="Hibridación"><b>sp³</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Nitrógeno alifático con par libre</td>
+                                            <td data-label="Ángulos aproximados">~107º (menor que 109.5º por repulsión de par libre)</td>
+                                            <td data-label="Tipo de enlace principal">σ (C–N, N–H)</td>
+                                            <td data-label="Geometría molecular"><b>Pirámide trigonal</b></td>
+                                        </tr>
+                                        <tr data-serial="O1">
+                                            <td data-label="Átomo">O1</td>
+                                            <td data-label="Fragmento / posición">Oxígeno fenílico (Ar–O–)</td>
+                                            <td data-label="Hibridación"><b>sp³*</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Oxígeno éter</td>
+                                            <td data-label="Ángulos aproximados">~104–109º</td>
+                                            <td data-label="Tipo de enlace principal">σ (C–O)</td>
+                                            <td data-label="Geometría molecular"><b>Angular</b></td>
+                                        </tr>
+                                        <tr data-serial="O2">
+                                            <td data-label="Átomo">O2</td>
+                                            <td data-label="Fragmento / posición">Oxígeno del metoxi (–O–CH₃)</td>
+                                            <td data-label="Hibridación"><b>sp³</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Oxígeno éter</td>
+                                            <td data-label="Ángulos aproximados">~104–109º</td>
+                                            <td data-label="Tipo de enlace principal">σ (C–O)</td>
+                                            <td data-label="Geometría molecular"><b>Angular</b></td>
+                                        </tr>
+                                        <tr data-serial="O3">
+                                            <td data-label="Átomo">O3</td>
+                                            <td data-label="Fragmento / posición">Oxígeno del alcohol (–OH)</td>
+                                            <td data-label="Hibridación"><b>sp³</b></td>
+                                            <td data-label="Clase (tipo de átomo)">Oxígeno alcohol</td>
+                                            <td data-label="Ángulos aproximados">~104.5º</td>
+                                            <td data-label="Tipo de enlace principal">σ (O–H, C–O)</td>
+                                            <td data-label="Geometría molecular"><b>Angular</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div id="viewer-funcional-2" style="width:100%;height:220px;"></div>
-                            <div class="card-body">
-                                <p class="small">Grupo –CHOH– en la cadena lateral (hidroxilo unido a carbono secundario).</p>
+                            <!-- Overlay para estructura seleccionada -->
+                            <div id="overlay-estructura">
+                                <div class="overlay-content">
+                                    <button class="close-btn" id="close-overlay" title="Cerrar">&times;</button>
+                                    <div class="overlay-title" id="overlay-titulo"></div>
+                                    <div class="overlay-viewer" id="overlay-viewer"></div>
+                                    <div class="overlay-info" id="overlay-info"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
-                        <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
-                            <div class="card-header text-center bg-personalized text-white">
-                                <h5 class="mb-0">Amina secundaria</h5>
-                            </div>
-                            <div id="viewer-funcional-3" style="width:100%;height:220px;"></div>
-                            <div class="card-body">
-                                <p class="small">Grupo –NH– en la cadena lateral (nitrógeno unido a dos carbonos).</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
-                        <div class="card h-100 shadow-sm border-0 galeria-hover galeria-hover-comercial">
-                            <div class="card-header text-center bg-personalized text-white">
-                                <h5 class="mb-0">Anillo aromático (bencénico)</h5>
-                            </div>
-                            <div id="viewer-funcional-4" style="width:100%;height:220px;"></div>
-                            <div class="card-body">
-                                <p class="small">Estructura cíclica de seis carbonos con dobles enlaces conjugados (benceno).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-   
-    </section>
-    <!-- Signup-->
-    <section class="about-section text-center" >
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center mb-4">
-                    <div class="col-lg-10">
-                        <h2 class="text-white mb-4">Hibridación de los carbonos en el metoprolol</h2>
-                        <p class="text-white-50">Interactúa con la tabla: al pasar el mouse sobre cada fila, el átomo correspondiente se resalta en la molécula 3D. Haz clic para ver detalles.</p>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center mb-4">
-                    <div class="col-12 col-lg-7 mb-4">
-                        <div class="table-responsive">
-                        <div class="tabla-scroll-x">
-                            <table class="table table-hover table-bordered align-middle bg-white w-100" id="tabla-hibridacion">
-                        <!-- Overlay para estructura seleccionada -->
-                        <div id="overlay-estructura">
-                            <div class="overlay-content">
-                                <button class="close-btn" id="close-overlay" title="Cerrar">&times;</button>
-                                <div class="overlay-title" id="overlay-titulo"></div>
-                                <div class="overlay-viewer" id="overlay-viewer"></div>
-                                <div class="overlay-info" id="overlay-info"></div>
-                            </div>
-                        </div>
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Átomo</th>
-                                        <th>Fragmento / posición</th>
-                                        <th>Hibridación</th>
-                                        <th>Clase (tipo de átomo)</th>
-                                        <th>Ángulos aproximados</th>
-                                        <th>Tipo de enlace principal</th>
-                                        <th>Geometría molecular</th>
-                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr data-serial="1,2,3,4,5,6">
