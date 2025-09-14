@@ -1,3 +1,58 @@
+/* Tabla de hibridación: compacta en desktop, tarjetas en móvil */
+#tabla-hibridacion th, #tabla-hibridacion td {
+  padding: 0.45rem 0.6rem;
+  font-size: 0.98rem;
+}
+#tabla-hibridacion thead th {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+#tabla-hibridacion {
+  min-width: 700px;
+  width: 100%;
+  margin-bottom: 0;
+}
+@media (max-width: 900px) {
+  #tabla-hibridacion {
+    min-width: 600px;
+    font-size: 0.93rem;
+  }
+}
+@media (max-width: 700px) {
+  #tabla-hibridacion, #tabla-hibridacion thead, #tabla-hibridacion tbody, #tabla-hibridacion tr, #tabla-hibridacion th, #tabla-hibridacion td {
+    display: block;
+    width: 100%;
+    min-width: unset;
+    box-sizing: border-box;
+  }
+  #tabla-hibridacion thead {
+    display: none;
+  }
+  #tabla-hibridacion tr {
+    margin-bottom: 1.2rem;
+    border: 1px solid #eee;
+    border-radius: 0.7rem;
+    background: #fff;
+    box-shadow: 0 2px 8px #0001;
+    padding: 0.7rem 0.5rem;
+  }
+  #tabla-hibridacion td {
+    padding: 0.35rem 0.7rem;
+    font-size: 1.01rem;
+    border: none;
+    border-bottom: 1px solid #f2f2f2;
+    position: relative;
+  }
+  #tabla-hibridacion td:before {
+    content: attr(data-label) ": ";
+    font-weight: bold;
+    color: #a16468;
+    display: block;
+    margin-bottom: 2px;
+  }
+}
 /* Asegura que los títulos de las tarjetas sean visibles y tengan contraste */
 .galeria-hover-comercial .card-header {
   background: #a16468!important;
