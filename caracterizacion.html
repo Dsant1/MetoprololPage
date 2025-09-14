@@ -144,28 +144,88 @@
                             <table class="table table-hover table-bordered align-middle bg-white" id="tabla-hibridacion">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Átomo (C)</th>
+                                        <th>Átomo</th>
+                                        <th>Fragmento / posición</th>
                                         <th>Hibridación</th>
-                                        <th>Ángulo</th>
-                                        <th>Tipo de enlace</th>
+                                        <th>Clase (tipo de átomo)</th>
+                                        <th>Ángulos aproximados</th>
+                                        <th>Tipo de enlace principal</th>
+                                        <th>Geometría molecular</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-serial="1"><td>C1</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                    <tr data-serial="2"><td>C2</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                    <tr data-serial="3"><td>C3</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                    <tr data-serial="4"><td>C4</td><td>sp2</td><td>120º</td><td>Doble</td></tr>
-                                    <tr data-serial="5"><td>C5</td><td>sp3</td><td>120º</td><td>Doble</td></tr>
-                                    <tr data-serial="6"><td>C6</td><td>sp3</td><td>120º</td><td>Doble</td></tr>
-                                    <tr data-serial="7"><td>C7</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="8"><td>C8</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="9"><td>C9</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="10"><td>C10</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="11"><td>C11</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="12"><td>C12</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="13"><td>C13</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="14"><td>C14</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
-                                    <tr data-serial="15"><td>C15</td><td>sp3</td><td>109.5º</td><td>Simple</td></tr>
+                                    <tr data-serial="1,2,3,4,5,6">
+                                        <td>C1–C6</td>
+                                        <td>Anillo aromático (benceno)</td>
+                                        <td><b>sp²</b></td>
+                                        <td>Carbono aromático</td>
+                                        <td>~120º</td>
+                                        <td>σ (C–C, C–H) + π (deslocalizado)</td>
+                                        <td><b>Trigonal plana</b></td>
+                                    </tr>
+                                    <tr data-serial="7,8,10,12,13,14,15">
+                                        <td>C7, C8, C10, C12, C13, C14, C15</td>
+                                        <td>C alifáticos (CH₂, CH, CH₃)</td>
+                                        <td><b>sp³</b></td>
+                                        <td>Carbono saturado (alifático)</td>
+                                        <td>~109.5º</td>
+                                        <td>σ (C–C, C–H, C–N, C–O)</td>
+                                        <td><b>Tetraédrica</b></td>
+                                    </tr>
+                                    <tr data-serial="9">
+                                        <td>C9</td>
+                                        <td>C del grupo metoxi (CH₃–O–)</td>
+                                        <td><b>sp³</b></td>
+                                        <td>Carbono saturado (metilo)</td>
+                                        <td>~109.5º</td>
+                                        <td>σ (C–H, C–O)</td>
+                                        <td><b>Tetraédrica</b></td>
+                                    </tr>
+                                    <tr data-serial="11">
+                                        <td>C11</td>
+                                        <td>C del alcohol secundario (–CHOH–)</td>
+                                        <td><b>sp³</b></td>
+                                        <td>Carbono saturado con –OH</td>
+                                        <td>~109.5º</td>
+                                        <td>σ (C–C, C–H, C–O)</td>
+                                        <td><b>Tetraédrica</b></td>
+                                    </tr>
+                                    <tr data-serial="N1">
+                                        <td>N1</td>
+                                        <td>Amina secundaria (–NH–)</td>
+                                        <td><b>sp³</b></td>
+                                        <td>Nitrógeno alifático con par libre</td>
+                                        <td>~107º (menor que 109.5º por repulsión de par libre)</td>
+                                        <td>σ (C–N, N–H)</td>
+                                        <td><b>Pirámide trigonal</b></td>
+                                    </tr>
+                                    <tr data-serial="O1">
+                                        <td>O1</td>
+                                        <td>Oxígeno fenílico (Ar–O–)</td>
+                                        <td><b>sp³*</b></td>
+                                        <td>Oxígeno éter</td>
+                                        <td>~104–109º</td>
+                                        <td>σ (C–O)</td>
+                                        <td><b>Angular</b></td>
+                                    </tr>
+                                    <tr data-serial="O2">
+                                        <td>O2</td>
+                                        <td>Oxígeno del metoxi (–O–CH₃)</td>
+                                        <td><b>sp³</b></td>
+                                        <td>Oxígeno éter</td>
+                                        <td>~104–109º</td>
+                                        <td>σ (C–O)</td>
+                                        <td><b>Angular</b></td>
+                                    </tr>
+                                    <tr data-serial="O3">
+                                        <td>O3</td>
+                                        <td>Oxígeno del alcohol (–OH)</td>
+                                        <td><b>sp³</b></td>
+                                        <td>Oxígeno alcohol</td>
+                                        <td>~104.5º</td>
+                                        <td>σ (O–H, C–O)</td>
+                                        <td><b>Angular</b></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -238,10 +298,12 @@
         viewerHibridacion.render();
     });
     function resaltaCarbono(serial, color='#e74c3c') {
-        viewerHibridacion.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-        viewerHibridacion.setStyle({serial: serial}, {stick: {radius:0.28, color: color}, sphere: {scale:0.35, color: color}});
-        viewerHibridacion.zoomTo({serial: serial});
-        viewerHibridacion.render();
+    viewerHibridacion.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
+    let serials = Array.isArray(serial) ? serial : (typeof serial === 'string' && serial.includes(',')) ? serial.split(',').map(s=>isNaN(s)?s.trim():Number(s)) : [serial];
+    // Si es N1, O1, O2, O3, puedes mapear a los seriales reales si los tienes, aquí solo resalta por nombre
+    viewerHibridacion.setStyle({serial: serials}, {stick: {radius:0.28, color: color}, sphere: {scale:0.35, color: color}});
+    viewerHibridacion.zoomTo({serial: serials});
+    viewerHibridacion.render();
     }
     function limpiarResaltado() {
         viewerHibridacion.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
@@ -252,14 +314,22 @@
         const filas = document.querySelectorAll('#tabla-hibridacion tbody tr');
         filas.forEach(fila => {
             fila.addEventListener('mouseenter', function() {
-                resaltaCarbono(Number(this.dataset.serial));
+                resaltaCarbono(this.dataset.serial);
             });
             fila.addEventListener('mouseleave', function() {
                 limpiarResaltado();
             });
             fila.addEventListener('click', function() {
                 const info = this.querySelectorAll('td');
-                alert(`Átomo: ${info[0].innerText}\nHibridación: ${info[1].innerText}\nÁngulo: ${info[2].innerText}\nTipo de enlace: ${info[3].innerText}`);
+                let detalle = '';
+                detalle += `Átomo(s): ${info[0].innerText}\n`;
+                detalle += `Fragmento/posición: ${info[1].innerText}\n`;
+                detalle += `Hibridación: ${info[2].innerText}\n`;
+                detalle += `Clase: ${info[3].innerText}\n`;
+                detalle += `Ángulo: ${info[4].innerText}\n`;
+                detalle += `Tipo de enlace: ${info[5].innerText}\n`;
+                detalle += `Geometría: ${info[6].innerText}`;
+                alert(detalle);
             });
         });
     });
