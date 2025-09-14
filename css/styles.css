@@ -1,3 +1,17 @@
+/* Forzar scroll horizontal visible para tablas anchas */
+.tabla-scroll-x {
+  overflow-x: auto !important;
+  background: linear-gradient(90deg, #fff 90%, #f8f8f8 100%);
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 8px #0001;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+#tabla-hibridacion {
+  min-width: 900px;
+  width: max-content;
+  margin-bottom: 0;
+}
 /* Tabla de hibridación: compacta en desktop, tarjetas en móvil */
 #tabla-hibridacion th, #tabla-hibridacion td {
   padding: 0.45rem 0.6rem;
