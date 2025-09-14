@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Grayscale - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">PROYECTO DE EJECUCIÓN </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">NOSOTROS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#signup">NUESTRO PROFESOR</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">ARTICULOS</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Conocimiento cientifico de suma importancia</h2>
+                        <a class="btn btn-danger" href="#exper">Conoce más</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+ 
+        <!-- Projects-->
+        <section class="projects-section bg-light" id="projects">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-12 col-lg-8 mx-auto">
+                        <div class="featured-text text-center text-lg-left">
+                            <h3>Fuentes de investigación y bibliografía</h3>
+                            <p class="text-muted">Consulta las fuentes científicas y académicas que respaldan nuestro trabajo.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fuentes dinámicas -->
+                <div class="row justify-content-center g-4" id="fuentes-lista">
+                    <!-- Las fuentes se insertarán aquí dinámicamente -->
+                </div>
+            </div>
+            <script>
+            // Lista de fuentes
+            const fuentes = [
+                {
+                    autor: "Chhalotiya, U. K., Patel, H. K., Mehta, F. A., & Shah, D. A.",
+                    anio: "2010",
+                    titulo: "Development and validation of spectrophotometric methods for estimation of Metoprolol succinate in bulk and in pharmaceutical formulation.",
+                    fuente: "International Journal of Pharmaceutical Sciences Review and Research, 3(2), 64–67."
+                },
+                {
+                    autor: "Flather, M. D., Yusuf, S., Køber, L., Pfeffer, M., Hall, A., Murray, G., ... & MERIT-HF Study Group.",
+                    anio: "1999",
+                    titulo: "Long-term ACE-inhibitor therapy in patients with heart failure or left-ventricular dysfunction: a systematic overview of data from individual patients.",
+                    fuente: "The Lancet, 355(9215), 1575–1581."
+                },
+                {
+                    autor: "Fresta, M., & Puglisi, G.",
+                    anio: "2012",
+                    titulo: "Controlled drug delivery systems for cardiovascular disease.",
+                    fuente: "Advanced Drug Delivery Reviews, 64(10), 899–900."
+                },
+                {
+                    autor: "Hart, H., Craine, L., & Hadad, C.",
+                    anio: "2007",
+                    titulo: "Química orgánica (12.ª ed.)",
+                    fuente: "McGraw Hill."
+                },
+                {
+                    autor: "Langer, R.",
+                    anio: "1998",
+                    titulo: "Drug delivery and targeting.",
+                    fuente: "Nature, 392(6679 Suppl), 5–10."
+                },
+                {
+                    autor: "LibreTexts.",
+                    anio: "2023",
+                    titulo: "13.9: Naming Aromatic Compounds. En Fundamentals of General, Organic, and Biological Chemistry.",
+                    fuente: "Recuperado de https://chem.libretexts.org"
+                },
+                {
+                    autor: "LibreTexts.",
+                    anio: "2025",
+                    titulo: "6.3: Aliphatic Hydrocarbons. En Chemistry LibreTexts.",
+                    fuente: "Recuperado de https://chem.libretexts.org"
+                },
+                {
+                    autor: "McMurry, J.",
+                    anio: "2009",
+                    titulo: "Química orgánica (7.ª ed.)",
+                    fuente: "Cengage Learning."
+                },
+                {
+                    autor: "Morrison, R., & Boyd, R.",
+                    anio: "1990",
+                    titulo: "Química orgánica (5.ª ed.)",
+                    fuente: "Addison Wesley Longman."
+                },
+                {
+                    autor: "PubChem.",
+                    anio: "s. f.",
+                    titulo: "Metoprolol (CID 4171). PubChem Compound Summary.",
+                    fuente: "Recuperado el 7 de septiembre de 2025, de https://pubchem.ncbi.nlm.nih.gov/compound/Metoprolol"
+                },
+                {
+                    autor: "Solomons, T. W. G.",
+                    anio: "2006",
+                    titulo: "Química orgánica (8.ª ed.)",
+                    fuente: "Limusa."
+                },
+                {
+                    autor: "Verywell Health.",
+                    anio: "2023",
+                    titulo: "Metoprolol tartrate vs. metoprolol succinate: What’s the difference?",
+                    fuente: "Recuperado de https://www.verywellhealth.com/metoprolol-tartrate-vs-metoprolol-succinate-7510994"
+                },
+                {
+                    autor: "ChemicalBook.",
+                    anio: "s. f.",
+                    titulo: "Metoprolol – Chemical properties.",
+                    fuente: "Recuperado de https://www.chemicalbook.com/ChemicalProductProperty_US_CB1165973.aspx"
+                },
+                {
+                    autor: "InvivoChem.",
+                    anio: "s. f.",
+                    titulo: "Metoprolol.",
+                    fuente: "Recuperado de https://www.invivochem.com/metoprolol.html"
+                },
+                {
+                    autor: "U.S. Food and Drug Administration (FDA).",
+                    anio: "2006",
+                    titulo: "Metoprolol succinate extended-release tablets – Label information.",
+                    fuente: "Recuperado de https://www.accessdata.fda.gov/drugsatfda_docs/label/2006/019962s032lbl.pdf"
+                }
+            ];
+            const colores = ["bg-danger", "bg-personalized", "bg-dark", "bg-secondary"];
+            const fuentesLista = document.getElementById('fuentes-lista');
+            fuentes.forEach((f, i) => {
+                const card = document.createElement('div');
+                card.className = "col-12 col-md-6 col-lg-4 d-flex align-items-stretch";
+                card.innerHTML = `
+                    <div class="card shadow-lg mb-3 w-100 ${colores[i%colores.length]} text-white fuente-card" style="border-radius:1.2rem;">
+                        <div class="card-body d-flex flex-column justify-content-between h-100">
+                            <div>
+                                <h5 class="card-title mb-2"><i class="fa-solid fa-book-open-reader me-2"></i>${f.autor} <span class="badge bg-light text-dark ms-2">${f.anio}</span></h5>
+                                <p class="card-text mb-1" style="font-size:1.05rem;">${f.titulo}</p>
+                            </div>
+                            <div class="mt-2">
+                                <span class="text-white-50" style="font-size:0.98rem;">${f.fuente}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                fuentesLista.appendChild(card);
+            });
+            </script>
+        </section>
+        <!-- Signup-->
+      
+        <!-- Contact-->
+        <section class="contact-section bg-personalized">
+            <div class="container px-4 px-lg-5">
+                <div class="d-flex justify-content-center py-4">
+                    <h3>COSAS QUE TE PODRIAN INTERESAR</h3>
+                </div>
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-newspaper text-danger mb-2"></i>
+                                <h4 class="text-uppercase m-0">ARTICULOS RELACIONADOS</h4>
+                                <hr class="my-4 mx-auto" />
+                                <a class="btn btn-danger" href="#about">Clic acá</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-magnifying-glass text-danger mb-2"></i>
+                                <h4 class="text-uppercase m-0">fUENTES CONSULTADAS</h4>
+                                <hr class="my-4 mx-auto" />
+                                <a class="btn btn-danger" href="#about">Clic acá</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-personalized small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
