@@ -302,9 +302,15 @@
         // Limpiar visor anterior si existe
         if (overlayViewer) overlayViewer.clear();
         overlayViewer = $3Dmol.createViewer("overlay-hibridacion-viewer", {backgroundColor: "white"});
+        // Mapeo de nombres a seriales reales
+        let serials = serial;
+        if (typeof serials === 'string') {
+            serials = serials.replace(/\s/g, '');
+            serials = serials.replace('N1', '4').replace('O1', '1').replace('O2', '2').replace('O3', '3');
+            serials = serials.split(',').map(s => Number(s));
+        }
         $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", overlayViewer, {}, function() {
             overlayViewer.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-            let serials = Array.isArray(serial) ? serial : (typeof serial === 'string' && serial.includes(',')) ? serial.split(',').map(s=>isNaN(s)?s.trim():Number(s)) : [serial];
             overlayViewer.setStyle({serial: serials}, {stick: {radius:0.28, color: '#e74c3c'}, sphere: {scale:0.35, color: '#e74c3c'}});
             overlayViewer.zoomTo({serial: serials});
             overlayViewer.render();
