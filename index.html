@@ -85,6 +85,15 @@
                     <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4 d-flex align-items-stretch">
                         <div class="card py-4 w-100 h-100">
                             <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                <img src="assets/img/demo-image-0.jpg" alt="Nombre 3" class="img-fluid rounded-circle mb-3" style="width:120px;height:120px;object-fit:cover;" />
+                                <h4 class="text-uppercase m-0">Sebastian Romero</h4>
+                                <div class="text-muted small">Fisioterapia</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4 d-flex align-items-stretch">
+                        <div class="card py-4 w-100 h-100">
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
                                 <img src="assets/img/palua.jpg" alt="Nombre 4" class="img-fluid rounded-circle mb-3" style="width:120px;height:120px;object-fit:cover;" />
                                 <h4 class="text-uppercase m-0">Paula Caicedo</h4>
                                 <div class="text-muted small">Ingenieria Biomedica</div>
@@ -152,7 +161,8 @@
                                                 <h2 id="exper" class="text-white mb-4">Qué concluimos y por qué esta investigación es relevante para nuestras carreras?</h2>
                                                 <div class="btn-group mb-3" role="group" aria-label="Alternar información">
                                                     <button type="button" class="btn btn-danger" id="btn-conclusion">Conclusión</button>
-                                                    <button type="button" class="btn btn-outline-danger" id="btn-relevancia">Relevancia profesional</button>
+                                                    <button type="button" class="btn btn-outline-danger" id="btn-relevancia">Relevancia biomédica</button>
+                                                    <button type="button" class="btn btn-outline-danger" id="btn-fisio">Utilidad en Fisioterapia</button>
                                                 </div>
                                                 <div id="info-dinamica" class="text-white-50">
                                                     <strong>Conclusión:</strong> ........
@@ -162,6 +172,7 @@
                                 <script>
                                     const btnConclusion = document.getElementById('btn-conclusion');
                                     const btnRelevancia = document.getElementById('btn-relevancia');
+                                    const btnFisio = document.getElementById('btn-fisio');
                                     const infoDinamica = document.getElementById('info-dinamica');
                                     btnConclusion.addEventListener('click', function() {
                                         infoDinamica.innerHTML = '<strong>Conclusión:</strong> El estudio del metoprolol nos permitió..................';
@@ -169,13 +180,26 @@
                                         btnConclusion.classList.remove('btn-outline-danger');
                                         btnRelevancia.classList.remove('btn-danger');
                                         btnRelevancia.classList.add('btn-outline-danger');
+                                        btnFisio.classList.remove('btn-danger');
+                                        btnFisio.classList.add('btn-outline-danger');
                                     });
                                     btnRelevancia.addEventListener('click', function() {
-                                        infoDinamica.innerHTML = '<strong>Relevancia profesional:</strong> Esta investigación es fundamental para nuestra formación como ingenieros biomédicos, ya que nos permite comprender la relación entre el diseño de dispositivos médicos, la farmacología y la atención al paciente, integrando el conocimiento científico para aportar soluciones innovadoras en el ámbito de la salud.';
+                                        infoDinamica.innerHTML = '<strong>Relevancia profesional (Ingeniería Biomédica):</strong> Esta investigación es fundamental para nuestra formación como ingenieros biomédicos, ya que nos permite comprender la relación entre el diseño de dispositivos médicos, la farmacología y la atención al paciente, integrando el conocimiento científico para aportar soluciones innovadoras en el ámbito de la salud.';
                                         btnRelevancia.classList.add('btn-danger');
                                         btnRelevancia.classList.remove('btn-outline-danger');
                                         btnConclusion.classList.remove('btn-danger');
                                         btnConclusion.classList.add('btn-outline-danger');
+                                        btnFisio.classList.remove('btn-danger');
+                                        btnFisio.classList.add('btn-outline-danger');
+                                    });
+                                    btnFisio.addEventListener('click', function() {
+                                        infoDinamica.innerHTML = '<strong>Utilidad en Fisioterapia:</strong> Para fisioterapia, conocer el metoprolol es esencial al tratar pacientes con patologías cardiovasculares, ya que permite adaptar los programas de ejercicio y rehabilitación considerando los efectos del medicamento sobre la frecuencia cardíaca y la respuesta al esfuerzo físico, garantizando así una atención segura y personalizada.';
+                                        btnFisio.classList.add('btn-danger');
+                                        btnFisio.classList.remove('btn-outline-danger');
+                                        btnConclusion.classList.remove('btn-danger');
+                                        btnConclusion.classList.add('btn-outline-danger');
+                                        btnRelevancia.classList.remove('btn-danger');
+                                        btnRelevancia.classList.add('btn-outline-danger');
                                     });
                                 </script>
                 
