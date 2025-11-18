@@ -31,18 +31,33 @@
             }
             #introTabsContent {
                 background: transparent;
+                display: flex;
+                align-items: center;
+                min-height: 60vh;
+                padding: 3rem 0;
             }
             #introTabsContent .tab-pane {
                 min-height: 400px;
-                padding: 1rem 0;
+                padding: 2rem 0;
                 background: transparent;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             #introTabsContent .tab-pane#integrantes {
-                min-height: 400px;
+                min-height: 500px;
                 background: transparent;
+                padding: 2rem 0;
             }
             #introTabsContent .tab-pane .card {
                 background: #fff;
+            }
+            #introTabsContent .tab-pane#integrantes .card {
+                margin-bottom: 1.5rem;
+                padding: 2rem 1rem !important;
+            }
+            #introTabsContent .tab-pane#integrantes .card-body {
+                padding: 1.5rem !important;
             }
         </style>
     </head>
