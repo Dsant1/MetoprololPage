@@ -14,6 +14,25 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            /* Estilos personalizados para las pestañas de introducción */
+            #introTabs .nav-link {
+                transition: all 0.3s ease;
+                color: rgba(255,255,255,0.7) !important;
+            }
+            #introTabs .nav-link:hover {
+                background-color: rgba(220,53,69,0.3) !important;
+                color: #fff !important;
+            }
+            #introTabs .nav-link.active {
+                background-color: rgba(220,53,69,0.3) !important;
+                color: #fff !important;
+                border-bottom: 3px solid #dc3545 !important;
+            }
+            #introTabsContent .tab-pane {
+                min-height: 200px;
+            }
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -48,50 +67,87 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-10">
-                        <h2 id="exper" class="text-white mb-3">Bienvenidos a BetaCardio</h2>
-                        <p class="text-white-50 mb-3" style="font-size: 0.95rem;">
-                           En el corazón de la medicina cardiovascular moderna se encuentra el metoprolol, un betabloqueante selectivo que ha transformado el tratamiento de millones de pacientes con hipertensión arterial, arritmias y otras afecciones cardíacas. Este compuesto químico, con su estructura molecular única, representa un ejemplo fascinante de cómo la química orgánica se traduce en soluciones terapéuticas que salvan vidas.
-                        </p>
-                        <p class="text-white-50 mb-3" style="font-size: 0.95rem;">
-                           Somos el equipo 2 del aula de Química Orgánica A3. A través de este proyecto, nos embarcamos en un viaje científico integral que abarca tanto los aspectos químicos fundamentales como las aplicaciones médicas y farmacológicas del metoprolol.
-                        </p>
-                        <div class="mb-3">
-                            <h5 class="text-white mb-2" style="font-size: 1.1rem;"><span class="text-danger">▸</span> Aspectos Químicos</h5>
-                            <ul class="text-white-50 mb-0" style="list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.6;">
-                                <li class="mb-1"><strong class="text-white">1. Estructura química:</strong> Visualizaciones 2D y 3D de la disposición espacial de los átomos.</li>
-                                <li class="mb-1"><strong class="text-white">2. Grupos funcionales:</strong> Éter aromático, alcohol secundario, amina secundaria y anillo bencénico.</li>
-                                <li class="mb-1"><strong class="text-white">3. Hibridación:</strong> Análisis detallado de cada átomo, geometrías moleculares y tipos de enlace.</li>
-                                <li class="mb-1"><strong class="text-white">4. Propiedades fisicoquímicas:</strong> Solubilidad, punto de fusión, densidad, pKa y comportamiento farmacológico.</li>
-                                <li class="mb-0"><strong class="text-white">5. Reacciones químicas:</strong> Pruebas de identificación de grupos funcionales con metodologías experimentales.</li>
-                            </ul>
+                        <h2 id="exper" class="text-white mb-4">Bienvenidos a BetaCardio</h2>
+                        
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs nav-justified mb-3" id="introTabs" role="tablist" style="border-bottom: 2px solid rgba(255,255,255,0.3);">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active text-white" id="intro-tab" data-bs-toggle="tab" data-bs-target="#intro" type="button" role="tab" aria-controls="intro" aria-selected="true" style="background-color: rgba(220,53,69,0.2); border: none; border-bottom: 3px solid #dc3545;">
+                                    Introducción
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link text-white" id="quimicos-tab" data-bs-toggle="tab" data-bs-target="#quimicos" type="button" role="tab" aria-controls="quimicos" aria-selected="false" style="background-color: rgba(220,53,69,0.1); border: none;">
+                                    Aspectos Químicos
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link text-white" id="medicos-tab" data-bs-toggle="tab" data-bs-target="#medicos" type="button" role="tab" aria-controls="medicos" aria-selected="false" style="background-color: rgba(220,53,69,0.1); border: none;">
+                                    Aspectos Médicos
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link text-white" id="segundo-tab" data-bs-toggle="tab" data-bs-target="#segundo" type="button" role="tab" aria-controls="segundo" aria-selected="false" style="background-color: rgba(220,53,69,0.1); border: none;">
+                                    Segundo Período
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <!-- Tab content -->
+                        <div class="tab-content" id="introTabsContent">
+                            <!-- Introducción -->
+                            <div class="tab-pane fade show active" id="intro" role="tabpanel" aria-labelledby="intro-tab">
+                                <p class="text-white-50 mb-3" style="font-size: 0.95rem;">
+                                   En el corazón de la medicina cardiovascular moderna se encuentra el metoprolol, un betabloqueante selectivo que ha transformado el tratamiento de millones de pacientes con hipertensión arterial, arritmias y otras afecciones cardíacas. Este compuesto químico, con su estructura molecular única, representa un ejemplo fascinante de cómo la química orgánica se traduce en soluciones terapéuticas que salvan vidas.
+                                </p>
+                                <p class="text-white-50 mb-3" style="font-size: 0.95rem;">
+                                   Somos el equipo 2 del aula de Química Orgánica A3. A través de este proyecto, nos embarcamos en un viaje científico integral que abarca tanto los aspectos químicos fundamentales como las aplicaciones médicas y farmacológicas del metoprolol.
+                                </p>
+                                <p class="text-white-50 mb-0" style="font-size: 0.95rem;">
+                                   Te invitamos a descubrir los secretos moleculares de este compuesto y entender por qué el metoprolol se ha convertido en uno de los medicamentos más prescritos en el mundo para el manejo de enfermedades cardiovasculares.
+                                </p>
+                            </div>
+                            
+                            <!-- Aspectos Químicos -->
+                            <div class="tab-pane fade" id="quimicos" role="tabpanel" aria-labelledby="quimicos-tab">
+                                <p class="text-white-50 mb-3" style="font-size: 0.95rem;">
+                                   En esta página web exploraremos en profundidad la caracterización química del metoprolol, incluyendo:
+                                </p>
+                                <ul class="text-white-50 mb-0" style="list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.8;">
+                                    <li class="mb-2"><strong class="text-white">1. Estructura química:</strong> Visualizaciones 2D y 3D de la disposición espacial de los átomos.</li>
+                                    <li class="mb-2"><strong class="text-white">2. Grupos funcionales:</strong> Éter aromático, alcohol secundario, amina secundaria y anillo bencénico.</li>
+                                    <li class="mb-2"><strong class="text-white">3. Hibridación:</strong> Análisis detallado de cada átomo, geometrías moleculares y tipos de enlace.</li>
+                                    <li class="mb-2"><strong class="text-white">4. Propiedades fisicoquímicas:</strong> Solubilidad, punto de fusión, densidad, pKa y comportamiento farmacológico.</li>
+                                    <li class="mb-0"><strong class="text-white">5. Reacciones químicas:</strong> Pruebas de identificación de grupos funcionales con metodologías experimentales.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Aspectos Médicos y Farmacológicos -->
+                            <div class="tab-pane fade" id="medicos" role="tabpanel" aria-labelledby="medicos-tab">
+                                <p class="text-white-50 mb-3" style="font-size: 0.95rem;">
+                                   Complementando el análisis químico, abordaremos:
+                                </p>
+                                <ul class="text-white-50 mb-0" style="list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.8;">
+                                    <li class="mb-2"><strong class="text-white">1. Patología:</strong> Hipertensión arterial: causas, síntomas, efectos secundarios y tratamiento.</li>
+                                    <li class="mb-2"><strong class="text-white">2. Descripción del medicamento:</strong> Presentaciones comerciales, genéricos vs. marca, propiedades farmacocinéticas.</li>
+                                    <li class="mb-2"><strong class="text-white">3. Mecanismo de acción:</strong> Relación entre estructura química y actividad farmacológica.</li>
+                                    <li class="mb-2"><strong class="text-white">4. Aplicaciones profesionales:</strong> Casos clínicos desde Ingeniería Biomédica y Fisioterapia.</li>
+                                    <li class="mb-0"><strong class="text-white">5. Recursos de investigación:</strong> Artículos científicos con contextualización profesional.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Temas del Segundo Período -->
+                            <div class="tab-pane fade" id="segundo" role="tabpanel" aria-labelledby="segundo-tab">
+                                <p class="text-white-50 mb-3" style="font-size: 0.95rem;">
+                                   En esta segunda fase del proyecto, profundizaremos en:
+                                </p>
+                                <ul class="text-white-50 mb-0" style="list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.8;">
+                                    <li class="mb-2"><strong class="text-white">• Pruebas experimentales:</strong> Identificación de grupos funcionales con reactivos, metodologías y resultados.</li>
+                                    <li class="mb-2"><strong class="text-white">• Modelos moleculares:</strong> Construcción física con fotografías desde diferentes ángulos y enumeración de átomos.</li>
+                                    <li class="mb-0"><strong class="text-white">• Contextualización profesional:</strong> Parches transdérmicos (Fisioterapia), antibióticos (Enfermería), residuos farmacéuticos (Ing. Ambiental) e implantes intravítreos (Ing. Biomédica).</li>
+                                </ul>
+                            </div>
                         </div>
-                        
-                        <hr class="my-2" style="border-color: rgba(255,255,255,0.2);">
-                        
-                        <div class="mb-3">
-                            <h5 class="text-white mb-2" style="font-size: 1.1rem;"><span class="text-danger">▸</span> Aspectos Médicos y Farmacológicos</h5>
-                            <ul class="text-white-50 mb-0" style="list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.6;">
-                                <li class="mb-1"><strong class="text-white">1. Patología:</strong> Hipertensión arterial: causas, síntomas, efectos secundarios y tratamiento.</li>
-                                <li class="mb-1"><strong class="text-white">2. Descripción del medicamento:</strong> Presentaciones comerciales, genéricos vs. marca, propiedades farmacocinéticas.</li>
-                                <li class="mb-1"><strong class="text-white">3. Mecanismo de acción:</strong> Relación entre estructura química y actividad farmacológica.</li>
-                                <li class="mb-1"><strong class="text-white">4. Aplicaciones profesionales:</strong> Casos clínicos desde Ingeniería Biomédica y Fisioterapia.</li>
-                                <li class="mb-0"><strong class="text-white">5. Recursos de investigación:</strong> Artículos científicos con contextualización profesional.</li>
-                            </ul>
-                        </div>
-                        
-                        <hr class="my-2" style="border-color: rgba(255,255,255,0.2);">
-                        
-                        <div class="mb-3">
-                            <h5 class="text-white mb-2" style="font-size: 1.1rem;"><span class="text-danger">▸</span> Temas del Segundo Período</h5>
-                            <ul class="text-white-50 mb-0" style="list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.6;">
-                                <li class="mb-1"><strong class="text-white">• Pruebas experimentales:</strong> Identificación de grupos funcionales con reactivos, metodologías y resultados.</li>
-                                <li class="mb-1"><strong class="text-white">• Modelos moleculares:</strong> Construcción física con fotografías desde diferentes ángulos y enumeración de átomos.</li>
-                                <li class="mb-0"><strong class="text-white">• Contextualización profesional:</strong> Parches transdérmicos (Fisioterapia), antibióticos (Enfermería), residuos farmacéuticos (Ing. Ambiental) e implantes intravítreos (Ing. Biomédica).</li>
-                            </ul>
-                        </div>
-                        <p class="text-white-50 mb-0" style="font-size: 0.95rem;">
-                           Te invitamos a descubrir los secretos moleculares de este compuesto y entender por qué el metoprolol se ha convertido en uno de los medicamentos más prescritos en el mundo para el manejo de enfermedades cardiovasculares.
-                        </p>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
