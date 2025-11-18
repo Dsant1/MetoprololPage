@@ -29,46 +29,41 @@
                 color: #fff !important;
                 border-bottom: 3px solid #dc3545 !important;
             }
+            .about-section .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-height: calc(100vh - 10rem);
+            }
+            .about-section .row:first-child {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex: 1;
+            }
+            .about-section h2 {
+                margin-bottom: 2rem;
+            }
+            .about-section #introTabs {
+                margin-bottom: 1.5rem;
+            }
             #introTabsContent {
                 background: transparent;
-                display: flex;
-                align-items: center;
-                min-height: 60vh;
-                padding: 3rem 0;
             }
             #introTabsContent .tab-pane {
                 min-height: 400px;
-                padding: 2rem 0;
+                padding: 1rem 0;
                 background: transparent;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
-            }
-            #introTabsContent .tab-pane > * {
-                width: 100%;
-                max-width: 900px;
             }
             #introTabsContent .tab-pane#integrantes {
-                min-height: 500px;
+                min-height: 400px;
                 background: transparent;
-                padding: 2rem 0;
-                justify-content: center;
-            }
-            #introTabsContent .tab-pane#integrantes .row {
-                width: 100%;
-                max-width: 1000px;
-                margin: 0 auto;
             }
             #introTabsContent .tab-pane .card {
                 background: #fff;
-            }
-            #introTabsContent .tab-pane#integrantes .card {
-                margin-bottom: 1.5rem;
-                padding: 2rem 1rem !important;
-            }
-            #introTabsContent .tab-pane#integrantes .card-body {
-                padding: 1.5rem !important;
             }
         </style>
     </head>
@@ -105,7 +100,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-10">
-                        <h2 id="exper" class="text-white mb-4 text-center">Bienvenidos a BetaCardio</h2>
+                        <h2 id="exper" class="text-white mb-4">Bienvenidos a BetaCardio</h2>
                         
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs nav-justified mb-3" id="introTabs" role="tablist" style="border-bottom: 2px solid rgba(255,255,255,0.3);">
