@@ -43,11 +43,22 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                align-items: center;
+            }
+            #introTabsContent .tab-pane > * {
+                width: 100%;
+                max-width: 900px;
             }
             #introTabsContent .tab-pane#integrantes {
                 min-height: 500px;
                 background: transparent;
                 padding: 2rem 0;
+                justify-content: center;
+            }
+            #introTabsContent .tab-pane#integrantes .row {
+                width: 100%;
+                max-width: 1000px;
+                margin: 0 auto;
             }
             #introTabsContent .tab-pane .card {
                 background: #fff;
@@ -94,7 +105,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-10">
-                        <h2 id="exper" class="text-white mb-4">Bienvenidos a BetaCardio</h2>
+                        <h2 id="exper" class="text-white mb-4 text-center">Bienvenidos a BetaCardio</h2>
                         
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs nav-justified mb-3" id="introTabs" role="tablist" style="border-bottom: 2px solid rgba(255,255,255,0.3);">
