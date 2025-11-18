@@ -42,13 +42,16 @@
                 flex: 1;
             }
             .about-section h2 {
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
             }
             .about-section #introTabs {
                 margin-bottom: 1.5rem;
             }
             #introTabsContent {
                 background: transparent;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             #introTabsContent .tab-pane {
                 min-height: 400px;
@@ -61,6 +64,14 @@
             #introTabsContent .tab-pane#integrantes {
                 min-height: 400px;
                 background: transparent;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            #introTabsContent .tab-pane#integrantes .row {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             #introTabsContent .tab-pane .card {
                 background: #fff;
