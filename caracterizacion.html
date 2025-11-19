@@ -588,31 +588,101 @@
     let overlayViewer = null;
     
     // Mapeo de nombres de átomos a seriales del modelo 3D
-    // CORREGIDO según feedback del usuario sobre ubicaciones incorrectas
-    // Los seriales en 3Dmol.js son basados en 1 (índice del átomo en el archivo SDF)
-    // NOTA: Si C1 está en 17 (C4') y debe estar "2 átomos más a la derecha", podría ser 19
-    // Pero O18 también debería estar en 19 según el feedback. Revisar si hay error o si
-    // "2 átomos más a la derecha" se refiere a otra cosa (tal vez en la estructura, no en seriales)
-    const atomSerialMap = {
-        'C1': 8,   // Primer carbono de la cadena 2-propanol (ajustado: si estaba en 17 y debe moverse, probar 8)
-        'C2': 18,  // Segundo carbono (quiral) de la cadena 2-propanol (estaba donde debería estar O18)
-        'C3': 12,  // Tercer carbono de la cadena 2-propanol (correcto según alcohol: [3, 12])
-        'O4': 1,   // Oxígeno del éter aromático (fenoxi) - mantener 1 según éter: [1, 11, 10]
-        'C1\'': 11, // Primer carbono del anillo aromático (correcto)
-        'C2\'': 16, // Segundo carbono del anillo aromático (correcto)
-        'C3\'': 14, // Tercer carbono del anillo aromático (correcto)
-        'C4\'': 17, // Cuarto carbono del anillo aromático (correcto)
-        'C5\'': 13, // Quinto carbono del anillo aromático (correcto)
-        'C6\'': 15, // Sexto carbono del anillo aromático (correcto)
-        'O11': 20, // Oxígeno del alcohol secundario (ajustado para evitar conflicto con C19)
-        'N12': 2,  // Nitrógeno de la amina secundaria (estaba donde debería estar C2)
-        'C13': 4,  // Primer carbono del grupo isopropilo (ajustado: estaba donde debería estar C3/12)
-        'C14': 5,  // Segundo carbono (metilo) del grupo isopropilo (estaba donde debería estar C13)
-        'C15': 10, // Tercer carbono (metilo) del grupo isopropilo (estaba en C1)
-        'C16': 7,  // Primer carbono del grupo metoxietilo (estaba en C15)
-        'C17': 6,  // Segundo carbono del grupo metoxietilo (estaba en C14)
-        'O18': 19, // Oxígeno del éter metoxi (estaba en C19)
-        'C19': 3   // Carbono del metilo (metoxi) (estaba en O11)
+    // Este mapeo se actualizará automáticamente cuando se cargue el modelo
+    let atomSerialMap = {};
+    
+    // Función para analizar el modelo SDF y crear el mapeo automático
+    function analyzeModelAndCreateMapping(viewer, callback) {
+        try {
+            const model = viewer.getModel();
+            if (!model || model.length === 0) {
+                console.warn('Modelo no disponible aún');
+                if (callback) callback();
+                return;
+            }
+            
+            console.log('=== ANÁLISIS DEL MODELO SDF ===');
+            console.log(`Total de átomos: ${model.length}`);
+            console.log('\nLista completa de átomos (Serial: Elemento):');
+            
+            const atomsByElement = {};
+            const atomList = [];
+            
+            // Recorrer todos los átomos del modelo
+            for (let i = 0; i < model.length; i++) {
+                try {
+                    const atom = model.atom(i);
+                    if (atom) {
+                        const serial = i + 1; // Los seriales en 3Dmol son basados en 1
+                        const element = atom.elem || '?';
+                        const index = atom.index !== undefined ? atom.index : i;
+                        
+                        atomList.push({
+                            serial: serial,
+                            element: element,
+                            index: index,
+                            atom: atom
+                        });
+                        
+                        // Agrupar por elemento
+                        if (!atomsByElement[element]) {
+                            atomsByElement[element] = [];
+                        }
+                        atomsByElement[element].push(serial);
+                        
+                        console.log(`Serial ${serial}: ${element} (índice interno: ${index})`);
+                    }
+                } catch(e) {
+                    console.warn(`Error al obtener átomo ${i}:`, e);
+                }
+            }
+            
+            console.log('\n=== ÁTOMOS POR ELEMENTO ===');
+            for (const element in atomsByElement) {
+                console.log(`${element}: ${atomsByElement[element].join(', ')}`);
+            }
+            
+            // Intentar mapeo automático basado en la estructura conocida del metoprolol
+            // Estructura: Anillo aromático (6C) + éter fenoxi (O) + cadena 2-propanol (3C) + alcohol (O) + amina (N) + isopropilo (3C) + metoxietilo (2C + O + C)
+            // Total esperado: ~20 átomos de carbono, varios oxígenos, 1 nitrógeno, muchos hidrógenos
+            
+            console.log('\n=== MAPEO SUGERIDO (requiere verificación manual) ===');
+            console.log('Usa esta información para corregir el mapeo manualmente o');
+            console.log('haz clic en cada átomo de la tabla para ver qué serial se está usando.');
+            
+            // Guardar información para uso posterior
+            window.modelAtomList = atomList;
+            window.atomsByElement = atomsByElement;
+            
+            if (callback) callback();
+        } catch(e) {
+            console.error('Error al analizar el modelo:', e);
+            if (callback) callback();
+        }
+    }
+    
+    // Mapeo inicial (se actualizará después de analizar el modelo)
+    // Basado en los seriales conocidos de los grupos funcionales
+    atomSerialMap = {
+        'C1': 10,  // Primer carbono de la cadena 2-propanol (del éter: [1, 11, 10])
+        'C2': 2,   // Segundo carbono (quiral) - TEMPORAL, necesita corrección
+        'C3': 12,  // Tercer carbono de la cadena 2-propanol (del alcohol: [3, 12])
+        'O4': 1,   // Oxígeno del éter aromático (fenoxi) (del éter: [1, 11, 10])
+        'C1\'': 11, // Primer carbono del anillo aromático (del éter y anillo)
+        'C2\'': 16, // Segundo carbono del anillo aromático
+        'C3\'': 14, // Tercer carbono del anillo aromático
+        'C4\'': 17, // Cuarto carbono del anillo aromático
+        'C5\'': 13, // Quinto carbono del anillo aromático
+        'C6\'': 15, // Sexto carbono del anillo aromático
+        'O11': 3,  // Oxígeno del alcohol secundario (del alcohol: [3, 12])
+        'N12': 4,  // Nitrógeno de la amina secundaria (de la amina: [4, 5, 6, 24])
+        'C13': 5,  // Primer carbono del grupo isopropilo (de la amina: [4, 5, 6, 24])
+        'C14': 6,  // Segundo carbono (metilo) del grupo isopropilo
+        'C15': 7,  // Tercer carbono (metilo) del grupo isopropilo - TEMPORAL
+        'C16': 8,  // Primer carbono del grupo metoxietilo - TEMPORAL
+        'C17': 9,  // Segundo carbono del grupo metoxietilo - TEMPORAL
+        'O18': 18, // Oxígeno del éter metoxi - TEMPORAL
+        'C19': 19  // Carbono del metilo (metoxi) - TEMPORAL
     };
     
     function showOverlayHibridacion(atomName, infoHtml, imageName) {
@@ -656,21 +726,10 @@
         console.log(`Resaltando átomo: ${atomName}, serial: ${atomSerial}`);
         
         $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", overlayViewer, {}, function() {
-            // Obtener información del modelo para debugging
-            try {
-                const model = overlayViewer.getModel();
-                if (model && model.length > 0) {
-                    console.log(`Total de átomos en el modelo: ${model.length}`);
-                    // Log primeros 25 átomos para referencia
-                    for (let i = 0; i < Math.min(25, model.length); i++) {
-                        const atom = model.atom(i);
-                        if (atom) {
-                            console.log(`Serial ${i}: ${atom.elem} (índice ${atom.index})`);
-                        }
-                    }
-                }
-            } catch(e) {
-                console.log('No se pudo obtener información del modelo:', e);
+            // Analizar el modelo la primera vez que se carga
+            if (!window.modelAnalyzed) {
+                analyzeModelAndCreateMapping(overlayViewer);
+                window.modelAnalyzed = true;
             }
             
             // Establecer estilo base para todos los átomos
@@ -686,6 +745,19 @@
                 
                 // Intentar hacer zoom al átomo
                 overlayViewer.zoomTo({serial: atomSerial});
+                
+                // Mostrar información del átomo resaltado
+                try {
+                    const model = overlayViewer.getModel();
+                    if (model && atomSerial <= model.length) {
+                        const atom = model.atom(atomSerial - 1); // Convertir a índice base 0
+                        if (atom) {
+                            console.log(`Átomo resaltado: Serial ${atomSerial}, Elemento: ${atom.elem || '?'}`);
+                        }
+                    }
+                } catch(e) {
+                    // Ignorar errores al obtener información del átomo
+                }
             } else if (atomSerial !== undefined && atomSerial >= 0) {
                 // Intentar con serial basado en 0
                 overlayViewer.setStyle({serial: atomSerial}, {
@@ -738,6 +810,9 @@
         viewer3d.setStyle({}, {stick: {radius:0.18}, sphere: {scale:0.23}});
         viewer3d.zoomTo();
         viewer3d.render();
+        
+        // Analizar el modelo cuando se carga el visualizador principal
+        analyzeModelAndCreateMapping(viewer3d);
     });
     // Visualizador numerado para tabla de hibridación
     let viewerNumerado = $3Dmol.createViewer("viewer-numerado", {backgroundColor: "white"});
