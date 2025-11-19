@@ -588,38 +588,31 @@
     let overlayViewer = null;
     
     // Mapeo de nombres de átomos a seriales del modelo 3D
-    // Basado en los seriales usados en las visualizaciones de grupos funcionales:
-    // - Éter aromático: [1, 11, 10] (1=O, 11=C anillo, 10=C cadena)
-    // - Alcohol: [3, 12] (3=O, 12=C)
-    // - Amina: [4, 5, 6, 24] (4=N, 5,6=C isopropilo, 24=H)
-    // - Anillo aromático: [14, 15, 16, 17, 11, 13] (todos los C del anillo)
+    // CORREGIDO según feedback del usuario sobre ubicaciones incorrectas
+    // Los seriales en 3Dmol.js son basados en 1 (índice del átomo en el archivo SDF)
+    // NOTA: Si C1 está en 17 (C4') y debe estar "2 átomos más a la derecha", podría ser 19
+    // Pero O18 también debería estar en 19 según el feedback. Revisar si hay error o si
+    // "2 átomos más a la derecha" se refiere a otra cosa (tal vez en la estructura, no en seriales)
     const atomSerialMap = {
-        // Cadena 2-propanol
-        'C1': 19,  // Primer carbono de la cadena 2-propanol (corregido: estaba en C4'=17, ahora dos átomos más a la derecha)
-        'C2': 18,  // Segundo carbono (quiral) de la cadena 2-propanol (corregido: estaba donde O18=18)
-        'C3': 12,  // Tercer carbono de la cadena 2-propanol (mantener: del alcohol [3, 12])
-        // Éter aromático
-        'O4': 1,   // Oxígeno del éter aromático (fenoxi) (corregido: del éter [1, 11, 10], estaba mal asignado)
-        // Anillo aromático (ya corregidos)
-        'C1\'': 11, // Primer carbono del anillo aromático (unido al O4)
-        'C2\'': 16, // Segundo carbono del anillo aromático
-        'C3\'': 14, // Tercer carbono del anillo aromático
-        'C4\'': 17, // Cuarto carbono del anillo aromático
-        'C5\'': 13, // Quinto carbono del anillo aromático
-        'C6\'': 15, // Sexto carbono del anillo aromático
-        // Alcohol secundario
-        'O11': 10, // Oxígeno del alcohol secundario (corregido: del éter [1, 11, 10], el 10 es el C de la cadena, O11 necesita otro valor)
-        // Amina secundaria
-        'N12': 4,  // Nitrógeno de la amina secundaria (corregido: de la amina [4, 5, 6, 24], estaba mal asignado)
-        // Grupo isopropilo
-        'C13': 5,  // Primer carbono del grupo isopropilo (corregido: de la amina [4, 5, 6, 24])
-        'C14': 6,  // Segundo carbono (metilo) del grupo isopropilo (corregido: de la amina [4, 5, 6, 24])
-        'C15': 7,  // Tercer carbono (metilo) del grupo isopropilo (corregido: estaba en C16=7)
-        // Grupo metoxietilo
-        'C16': 8,  // Primer carbono del grupo metoxietilo (corregido: necesita nuevo valor)
-        'C17': 9,  // Segundo carbono del grupo metoxietilo (corregido: necesita nuevo valor)
-        'O18': 20, // Oxígeno del éter metoxi (corregido: estaba en C19=19, ahora necesita nuevo valor)
-        'C19': 21  // Carbono del metilo (metoxi) (corregido: estaba en O11=3, ahora necesita nuevo valor)
+        'C1': 8,   // Primer carbono de la cadena 2-propanol (ajustado: si estaba en 17 y debe moverse, probar 8)
+        'C2': 18,  // Segundo carbono (quiral) de la cadena 2-propanol (estaba donde debería estar O18)
+        'C3': 12,  // Tercer carbono de la cadena 2-propanol (correcto según alcohol: [3, 12])
+        'O4': 1,   // Oxígeno del éter aromático (fenoxi) - mantener 1 según éter: [1, 11, 10]
+        'C1\'': 11, // Primer carbono del anillo aromático (correcto)
+        'C2\'': 16, // Segundo carbono del anillo aromático (correcto)
+        'C3\'': 14, // Tercer carbono del anillo aromático (correcto)
+        'C4\'': 17, // Cuarto carbono del anillo aromático (correcto)
+        'C5\'': 13, // Quinto carbono del anillo aromático (correcto)
+        'C6\'': 15, // Sexto carbono del anillo aromático (correcto)
+        'O11': 20, // Oxígeno del alcohol secundario (ajustado para evitar conflicto con C19)
+        'N12': 2,  // Nitrógeno de la amina secundaria (estaba donde debería estar C2)
+        'C13': 4,  // Primer carbono del grupo isopropilo (ajustado: estaba donde debería estar C3/12)
+        'C14': 5,  // Segundo carbono (metilo) del grupo isopropilo (estaba donde debería estar C13)
+        'C15': 10, // Tercer carbono (metilo) del grupo isopropilo (estaba en C1)
+        'C16': 7,  // Primer carbono del grupo metoxietilo (estaba en C15)
+        'C17': 6,  // Segundo carbono del grupo metoxietilo (estaba en C14)
+        'O18': 19, // Oxígeno del éter metoxi (estaba en C19)
+        'C19': 3   // Carbono del metilo (metoxi) (estaba en O11)
     };
     
     function showOverlayHibridacion(atomName, infoHtml, imageName) {
@@ -663,6 +656,23 @@
         console.log(`Resaltando átomo: ${atomName}, serial: ${atomSerial}`);
         
         $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", overlayViewer, {}, function() {
+            // Obtener información del modelo para debugging
+            try {
+                const model = overlayViewer.getModel();
+                if (model && model.length > 0) {
+                    console.log(`Total de átomos en el modelo: ${model.length}`);
+                    // Log primeros 25 átomos para referencia
+                    for (let i = 0; i < Math.min(25, model.length); i++) {
+                        const atom = model.atom(i);
+                        if (atom) {
+                            console.log(`Serial ${i}: ${atom.elem} (índice ${atom.index})`);
+                        }
+                    }
+                }
+            } catch(e) {
+                console.log('No se pudo obtener información del modelo:', e);
+            }
+            
             // Establecer estilo base para todos los átomos
             overlayViewer.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
             
