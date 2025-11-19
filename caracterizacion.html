@@ -1040,15 +1040,29 @@
                 'C4\'': "C4'", 'C5\'': "C5'", 'C6\'': "C6'"
             };
             
-            // Mapeo de nombres a seriales (usando el mismo mapeo de la tabla)
+            // Mapeo de nombres a seriales CORREGIDO según los índices reales del modelo
+            // Los seriales coinciden directamente con los índices (Serial=0 → índice 0, etc.)
+            // Basado en la información de depuración de los primeros 20 átomos
             const labelSerialMap = {
-                'C1': 7, 'C2': 4, 'C3': 5,
-                'O4': 0, 'O11': 1, 'O18': 2,
-                'N12': 3,
-                'C13': 6, 'C14': 8, 'C15': 9,
-                'C16': 12, 'C17': 17, 'C19': 18,
-                'C1\'': 11, 'C2\'': 16, 'C3\'': 14,
-                'C4\'': 10, 'C5\'': 13, 'C6\'': 15
+                'C1': 7,   // Índice 7: C en (-2.159, -1.596, 0.817)
+                'C2': 4,   // Índice 4: C en (-3.557, -1.093, 0.463)
+                'C3': 5,   // Índice 5: C en (-3.555, 0.288, -0.195)
+                'O4': 0,   // Índice 0: O en (-1.395, -1.712, -0.380)
+                'O11': 1,  // Índice 1: O en (-4.158, -2.020, -0.445)
+                'O18': 2,  // Índice 2: O en (4.037, 1.504, -0.311)
+                'N12': 3,  // Índice 3: N en (-2.924, 1.296, 0.647)
+                'C13': 6,  // Índice 6: C en (-2.885, 2.587, -0.026)
+                'C14': 8,  // Índice 8: C en (-2.101, 2.480, -1.331)
+                'C15': 9,  // Índice 9: C en (-2.264, 3.625, 0.903)
+                'C16': 11, // Índice 11: C en (2.696, -1.097, -0.045) - CORREGIDO: era 12
+                'C17': 16, // Índice 16: C en (2.039, -0.784, -1.235) - correcto
+                'C19': 17, // Índice 17: C en (4.520, 0.520, 0.596) - CORREGIDO: era 18
+                'C1\'': 10, // Índice 10: C en (-0.046, -1.510, -0.270) - CORREGIDO: era 11
+                'C2\'': 15, // Índice 15: C en (1.978, -1.616, 1.032) - CORREGIDO: era 16
+                'C3\'': 13, // Índice 13: C en (0.603, -1.823, 0.919) - CORREGIDO: era 14
+                'C4\'': 9,  // Índice 9: C en (-2.264, 3.625, 0.903) - CORREGIDO: era 10
+                'C5\'': 12, // Índice 12: C en (4.166, -0.876, 0.075) - CORREGIDO: era 13
+                'C6\'': 14  // Índice 14: C en (0.664, -0.991, -1.348) - CORREGIDO: era 15
             };
             
             // Obtener el modelo y los átomos para acceder a las coordenadas
@@ -1153,10 +1167,11 @@
                     const serial = labelSerialMap[atomName];
                     if (serial !== undefined && atoms.length > 0) {
                         try {
-                            let atomIndex = serial === 0 ? 0 : serial - 1;
+                            // Los seriales coinciden directamente con los índices (Serial=0 → índice 0)
+                            let atomIndex = serial;
                             console.log(`\n--- Procesando ${atomName} (${label}) ---`);
                             console.log(`  Serial mapeado: ${serial}`);
-                            console.log(`  Índice calculado: ${atomIndex}`);
+                            console.log(`  Índice usado: ${atomIndex} (serial = índice en este modelo)`);
                             
                             if (atomIndex >= 0 && atomIndex < atoms.length) {
                                 const atom = atoms[atomIndex];
