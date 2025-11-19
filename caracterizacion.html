@@ -666,7 +666,7 @@
         'C1': 7,   // Primer carbono de la cadena 2-propanol
         'C2': 4,   // Segundo carbono (quiral) de la cadena 2-propanol
         'C3': 5,   // Tercer carbono de la cadena 2-propanol
-        'O4': 20,  // Oxígeno del éter aromático (fenoxi) - TEMPORAL, necesita verificación (no puede ser 0, 1, 11)
+        'O4': 0,   // Oxígeno del éter aromático (fenoxi) - probando con 0 (aunque normalmente los seriales empiezan en 1)
         'C1\'': 11, // Primer carbono del anillo aromático (correcto)
         'C2\'': 16, // Segundo carbono del anillo aromático (correcto)
         'C3\'': 14, // Tercer carbono del anillo aromático (correcto)
@@ -735,8 +735,8 @@
             overlayViewer.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
             
             // Resaltar el átomo específico si tenemos su serial
-            if (atomSerial !== undefined && atomSerial > 0) {
-                // Intentar con serial basado en 1 (como se usa en otras partes)
+            if (atomSerial !== undefined && atomSerial >= 0) {
+                // Intentar resaltar el átomo (permite serial 0)
                 overlayViewer.setStyle({serial: atomSerial}, {
                     stick: {radius:0.28, color: '#e74c3c'}, 
                     sphere: {scale:0.35, color: '#e74c3c'}
@@ -748,8 +748,8 @@
                 // Mostrar información del átomo resaltado
                 try {
                     const model = overlayViewer.getModel();
-                    if (model && atomSerial <= model.length) {
-                        const atom = model.atom(atomSerial - 1); // Convertir a índice base 0
+                    if (model && atomSerial >= 0 && atomSerial < model.length) {
+                        const atom = model.atom(atomSerial); // Si serial es 0, usar índice 0 directamente
                         if (atom) {
                             console.log(`Átomo resaltado: Serial ${atomSerial}, Elemento: ${atom.elem || '?'}`);
                         }
@@ -757,13 +757,6 @@
                 } catch(e) {
                     // Ignorar errores al obtener información del átomo
                 }
-            } else if (atomSerial !== undefined && atomSerial >= 0) {
-                // Intentar con serial basado en 0
-                overlayViewer.setStyle({serial: atomSerial}, {
-                    stick: {radius:0.28, color: '#e74c3c'}, 
-                    sphere: {scale:0.35, color: '#e74c3c'}
-                });
-                overlayViewer.zoomTo({serial: atomSerial});
             } else {
                 console.warn(`No se pudo determinar el serial para el átomo: ${atomName}`);
                 overlayViewer.zoomTo();
