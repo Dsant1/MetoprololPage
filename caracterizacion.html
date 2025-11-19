@@ -507,14 +507,14 @@
                 </div>
                 <!-- Overlay modal para visualización 3D -->
                 <div id="overlay-hibridacion" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,30,30,0.92);z-index:2000;align-items:center;justify-content:center;">
-                    <div style="background:#fff;border-radius:1.2rem;box-shadow:0 8px 32px #0008;padding:2rem 2rem 1.5rem 2rem;max-width:900px;width:95vw;max-height:90vh;overflow:auto;position:relative;display:flex;flex-direction:row;align-items:flex-start;gap:2rem;">
-                        <button id="close-overlay-hibridacion" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;color:#333;cursor:pointer;z-index:10;">&times;</button>
-                        <div style="flex:1;display:flex;flex-direction:column;min-width:0;">
-                            <div id="overlay-hibridacion-info" style="width:100%;margin-bottom:1.5rem;text-align:left;font-size:1.08rem;"></div>
-                            <div id="overlay-hibridacion-viewer" style="width:100%;max-width:400px;height:320px;margin:0 auto;"></div>
+                    <div style="background:#fff;border-radius:1.2rem;box-shadow:0 8px 32px #0008;padding:2rem 2rem 1.5rem 2rem;max-width:900px;width:95vw;max-height:90vh;overflow-y:auto;position:relative;display:flex;flex-direction:row;align-items:flex-start;gap:2rem;">
+                        <button id="close-overlay-hibridacion" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;color:#333;cursor:pointer;z-index:100;">&times;</button>
+                        <div style="flex:1;display:flex;flex-direction:column;min-width:0;position:relative;z-index:1;">
+                            <div id="overlay-hibridacion-info" style="width:100%;margin-bottom:1.5rem;text-align:left;font-size:1.08rem;position:relative;z-index:2;background:white;padding:1rem;border-radius:0.5rem;"></div>
+                            <div id="overlay-hibridacion-viewer" style="width:100%;max-width:400px;height:320px;margin:0 auto;position:relative;z-index:1;background:white;border:1px solid #ddd;border-radius:0.5rem;overflow:hidden;"></div>
                         </div>
-                        <div style="flex:1;display:flex;align-items:center;justify-content:center;min-width:0;">
-                            <img id="overlay-hibridacion-image" src="" alt="Estructura molecular" style="max-width:100%;max-height:500px;display:none;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.2);">
+                        <div style="flex:1;display:flex;align-items:center;justify-content:center;min-width:0;position:relative;z-index:1;">
+                            <img id="overlay-hibridacion-image" src="" alt="Estructura molecular" style="max-width:100%;max-height:500px;display:none;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.2);position:relative;z-index:1;">
                         </div>
                     </div>
                 </div>
@@ -666,7 +666,7 @@
         'C1': 7,   // Primer carbono de la cadena 2-propanol
         'C2': 4,   // Segundo carbono (quiral) de la cadena 2-propanol
         'C3': 5,   // Tercer carbono de la cadena 2-propanol
-        'O4': 0,   // Oxígeno del éter aromático (fenoxi) - probando con 0 (aunque normalmente los seriales empiezan en 1)
+        'O4': 0,   // Oxígeno del éter aromático (fenoxi) - CONFIRMADO: serial 0
         'C1\'': 11, // Primer carbono del anillo aromático (correcto)
         'C2\'': 16, // Segundo carbono del anillo aromático (correcto)
         'C3\'': 14, // Tercer carbono del anillo aromático (correcto)
