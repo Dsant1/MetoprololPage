@@ -332,14 +332,27 @@
                             </div>
                             <div id="viewer-numerado" style="width:100%;height:450px;border: 1px solid rgba(220,53,69,0.3);"></div>
                             <div class="card-body">
-                                <p class="small text-white-50 text-center mb-2">
+                                <p class="small text-white-50 text-center mb-3">
                                     <i class="fas fa-info-circle me-1"></i>
                                     Estructura 3D con átomos numerados para referencia en la tabla de hibridación
                                 </p>
+                                <div class="d-flex justify-content-center align-items-center flex-wrap gap-3 mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-danger me-2" style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;">O</span>
+                                        <span class="small text-white-50">Oxígeno</span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-primary me-2" style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;">N</span>
+                                        <span class="small text-white-50">Nitrógeno</span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-secondary me-2" style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;">C</span>
+                                        <span class="small text-white-50">Carbono</span>
+                                    </div>
+                                </div>
                                 <p class="small text-white-50 text-center mb-0">
-                                    <span class="badge bg-danger me-1">O</span> Oxígeno
-                                    <span class="badge bg-primary ms-2 me-1">N</span> Nitrógeno
-                                    <span class="badge bg-secondary ms-2 me-1">C</span> Carbono
+                                    <i class="fas fa-mouse me-1"></i>
+                                    <em>Arrastra para rotar • Rueda del mouse para zoom</em>
                                 </p>
                             </div>
                         </div>
@@ -985,29 +998,28 @@
     });
     // Visualizador numerado para tabla de hibridación
     let viewerNumerado = $3Dmol.createViewer("viewer-numerado", {
-        backgroundColor: "white",
-        defaultcolors: $3Dmol.rasmolElementColors
+        backgroundColor: 0xffffff
     });
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", viewerNumerado, {}, function() {
-        // Estilos por elemento químico
+        // Estilos mejorados por elemento químico con colores más vibrantes
         viewerNumerado.setStyle({elem: 'C'}, {
-            stick: {radius: 0.2, color: '#333333'}, 
-            sphere: {scale: 0.3, color: '#333333'}
+            stick: {radius: 0.22, color: '#2c3e50'}, 
+            sphere: {scale: 0.35, color: '#2c3e50'}
         });
         viewerNumerado.setStyle({elem: 'O'}, {
-            stick: {radius: 0.2, color: '#dc3545'}, 
-            sphere: {scale: 0.3, color: '#dc3545'}
+            stick: {radius: 0.22, color: '#dc3545'}, 
+            sphere: {scale: 0.35, color: '#dc3545'}
         });
         viewerNumerado.setStyle({elem: 'N'}, {
-            stick: {radius: 0.2, color: '#0d6efd'}, 
-            sphere: {scale: 0.3, color: '#0d6efd'}
+            stick: {radius: 0.22, color: '#0d6efd'}, 
+            sphere: {scale: 0.35, color: '#0d6efd'}
         });
         viewerNumerado.setStyle({elem: 'H'}, {
-            stick: {radius: 0.15, color: '#cccccc'}, 
-            sphere: {scale: 0.2, color: '#cccccc'}
+            stick: {radius: 0.12, color: '#95a5a6'}, 
+            sphere: {scale: 0.18, color: '#ecf0f1'}
         });
         
-        // Agregar etiquetas numéricas a los átomos principales según el mapeo
+        // Agregar etiquetas numéricas mejoradas a los átomos principales
         const atomLabels = {
             'C1': 'C1', 'C2': 'C2', 'C3': 'C3',
             'O4': 'O4', 'O11': 'O11', 'O18': 'O18',
@@ -1029,29 +1041,48 @@
             'C4\'': 10, 'C5\'': 13, 'C6\'': 15
         };
         
-        // Agregar etiquetas a los átomos principales
+        // Agregar etiquetas mejoradas con mejor visibilidad
         for (const [atomName, label] of Object.entries(atomLabels)) {
             const serial = labelSerialMap[atomName];
             if (serial !== undefined) {
+                // Determinar color de fondo según el elemento
+                let bgColor = '#dc3545'; // Rojo por defecto
+                let borderColor = '#c82333';
+                
+                if (label.startsWith('O')) {
+                    bgColor = '#dc3545'; // Rojo para oxígeno
+                    borderColor = '#c82333';
+                } else if (label.startsWith('N')) {
+                    bgColor = '#0d6efd'; // Azul para nitrógeno
+                    borderColor = '#0a58ca';
+                } else if (label.startsWith('C')) {
+                    bgColor = '#6c757d'; // Gris oscuro para carbono
+                    borderColor = '#5a6268';
+                }
+                
                 viewerNumerado.addLabel(label, {
-                    font: 'Arial',
-                    fontSize: 14,
+                    font: 'Arial Bold',
+                    fontSize: 16,
                     fontColor: 'white',
-                    backgroundColor: '#dc3545',
-                    borderThickness: 2,
-                    borderColor: '#c82333',
-                    backgroundOpacity: 0.9,
+                    backgroundColor: bgColor,
+                    borderThickness: 3,
+                    borderColor: borderColor,
+                    backgroundOpacity: 0.95,
                     position: {serial: serial},
-                    alignment: 'center'
+                    alignment: 'center',
+                    inFront: true
                 });
             }
         }
         
+        // Mejorar la iluminación y renderizado
+        viewerNumerado.setBackgroundColor(0xffffff);
         viewerNumerado.zoomTo();
         viewerNumerado.render();
         
-        // Hacer el visor interactivo (rotar con mouse)
-        viewerNumerado.setBackgroundColor(0xffffff);
+        // Agregar controles interactivos mejorados
+        viewerNumerado.rotate(20, 'y');
+        viewerNumerado.render();
     });
     </script>
     <!-- 3Dmol.js CDN -->
