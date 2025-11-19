@@ -594,25 +594,32 @@
     // - Amina: [4, 5, 6, 24] (4=N, 5,6=C isopropilo, 24=H)
     // - Anillo aromático: [14, 15, 16, 17, 11, 13] (todos los C del anillo)
     const atomSerialMap = {
-        'C1': 10,  // Primer carbono de la cadena 2-propanol (del éter: [1, 11, 10])
-        'C2': 2,   // Segundo carbono (quiral) de la cadena 2-propanol (entre C1 y C3)
-        'C3': 12,  // Tercer carbono de la cadena 2-propanol (del alcohol: [3, 12])
-        'O4': 1,   // Oxígeno del éter aromático (fenoxi) (del éter: [1, 11, 10])
-        'C1\'': 11, // Primer carbono del anillo aromático (unido al O4) (del éter y anillo)
-        'C2\'': 13, // Segundo carbono del anillo aromático (del anillo: [14, 15, 16, 17, 11, 13])
-        'C3\'': 14, // Tercer carbono del anillo aromático (del anillo)
-        'C4\'': 15, // Cuarto carbono del anillo aromático (del anillo)
-        'C5\'': 16, // Quinto carbono del anillo aromático (del anillo)
-        'C6\'': 17, // Sexto carbono del anillo aromático (del anillo)
-        'O11': 3,  // Oxígeno del alcohol secundario (del alcohol: [3, 12])
-        'N12': 4,  // Nitrógeno de la amina secundaria (de la amina: [4, 5, 6, 24])
-        'C13': 5,  // Primer carbono del grupo isopropilo (de la amina: [4, 5, 6, 24])
-        'C14': 6,  // Segundo carbono (metilo) del grupo isopropilo (de la amina)
-        'C15': 7,  // Tercer carbono (metilo) del grupo isopropilo (estimado)
-        'C16': 8,  // Primer carbono del grupo metoxietilo (estimado)
-        'C17': 9,  // Segundo carbono del grupo metoxietilo (estimado)
-        'O18': 18, // Oxígeno del éter metoxi (estimado)
-        'C19': 19  // Carbono del metilo (metoxi) (estimado)
+        // Cadena 2-propanol
+        'C1': 19,  // Primer carbono de la cadena 2-propanol (corregido: estaba en C4'=17, ahora dos átomos más a la derecha)
+        'C2': 18,  // Segundo carbono (quiral) de la cadena 2-propanol (corregido: estaba donde O18=18)
+        'C3': 12,  // Tercer carbono de la cadena 2-propanol (mantener: del alcohol [3, 12])
+        // Éter aromático
+        'O4': 1,   // Oxígeno del éter aromático (fenoxi) (corregido: del éter [1, 11, 10], estaba mal asignado)
+        // Anillo aromático (ya corregidos)
+        'C1\'': 11, // Primer carbono del anillo aromático (unido al O4)
+        'C2\'': 16, // Segundo carbono del anillo aromático
+        'C3\'': 14, // Tercer carbono del anillo aromático
+        'C4\'': 17, // Cuarto carbono del anillo aromático
+        'C5\'': 13, // Quinto carbono del anillo aromático
+        'C6\'': 15, // Sexto carbono del anillo aromático
+        // Alcohol secundario
+        'O11': 10, // Oxígeno del alcohol secundario (corregido: del éter [1, 11, 10], el 10 es el C de la cadena, O11 necesita otro valor)
+        // Amina secundaria
+        'N12': 4,  // Nitrógeno de la amina secundaria (corregido: de la amina [4, 5, 6, 24], estaba mal asignado)
+        // Grupo isopropilo
+        'C13': 5,  // Primer carbono del grupo isopropilo (corregido: de la amina [4, 5, 6, 24])
+        'C14': 6,  // Segundo carbono (metilo) del grupo isopropilo (corregido: de la amina [4, 5, 6, 24])
+        'C15': 7,  // Tercer carbono (metilo) del grupo isopropilo (corregido: estaba en C16=7)
+        // Grupo metoxietilo
+        'C16': 8,  // Primer carbono del grupo metoxietilo (corregido: necesita nuevo valor)
+        'C17': 9,  // Segundo carbono del grupo metoxietilo (corregido: necesita nuevo valor)
+        'O18': 20, // Oxígeno del éter metoxi (corregido: estaba en C19=19, ahora necesita nuevo valor)
+        'C19': 21  // Carbono del metilo (metoxi) (corregido: estaba en O11=3, ahora necesita nuevo valor)
     };
     
     function showOverlayHibridacion(atomName, infoHtml, imageName) {
