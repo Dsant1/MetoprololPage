@@ -728,9 +728,10 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <!-- 3Dmol.js CDN -->
-        <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
-        <script>
+    </body>
+    <!-- 3Dmol.js CDN -->
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>
     // Tabla interactiva de hibridación
     // Modal overlay para visualización 3D de cada átomo/grupo
     let overlayViewer = null;
@@ -1000,13 +1001,6 @@
         backgroundColor: 0xffffff
     });
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", viewerNumerado, {}, function() {
-        // Verificar que el modelo se cargó correctamente
-        const model = viewerNumerado.getModel();
-        if (!model || !model.length) {
-            console.error('Error: El modelo no se cargó correctamente');
-            return;
-        }
-        
         // Primero renderizar el modelo básico
         // Estilos mejorados por elemento químico con colores más vibrantes
         viewerNumerado.setStyle({elem: 'C'}, {
@@ -1033,6 +1027,8 @@
         
         // Esperar un momento para que el modelo se renderice antes de agregar etiquetas
         setTimeout(function() {
+            console.log('=== INICIO DEPURACIÓN DE ETIQUETAS ===');
+            
             // Agregar etiquetas numéricas mejoradas a los átomos principales
             const atomLabels = {
                 'C1': 'C1', 'C2': 'C2', 'C3': 'C3',
@@ -1044,68 +1040,79 @@
                 'C4\'': "C4'", 'C5\'': "C5'", 'C6\'': "C6'"
             };
             
-            // Usar EXACTAMENTE el mismo mapeo que se usa en la tabla de hibridación (atomSerialMap)
-            const labelSerialMap = atomSerialMap;
+            // Mapeo de nombres a seriales (usando el mismo mapeo de la tabla)
+            const labelSerialMap = {
+                'C1': 7, 'C2': 4, 'C3': 5,
+                'O4': 0, 'O11': 1, 'O18': 2,
+                'N12': 3,
+                'C13': 6, 'C14': 8, 'C15': 9,
+                'C16': 12, 'C17': 17, 'C19': 18,
+                'C1\'': 11, 'C2\'': 16, 'C3\'': 14,
+                'C4\'': 10, 'C5\'': 13, 'C6\'': 15
+            };
             
-            // Obtener el modelo y crear mapeo de coordenadas
+            // Obtener el modelo y los átomos para acceder a las coordenadas
             const model = viewerNumerado.getModel();
-            const serialToCoords = {}; // Mapeo serial -> {x, y, z}
+            console.log('Modelo obtenido:', model);
+            console.log('Tipo de modelo:', typeof model);
+            console.log('Es array?', Array.isArray(model));
+            console.log('Tiene getAtoms?', model && typeof model.getAtoms === 'function');
+            console.log('Tiene atoms?', model && model.atoms);
+            console.log('Tiene length?', model && model.length);
             
-            // Obtener todos los átomos y sus coordenadas
-            if (model && model.length) {
-                try {
+            let atoms = [];
+            
+            // Intentar obtener los átomos de diferentes formas según la versión de 3Dmol
+            if (model) {
+                if (typeof model.getAtoms === 'function') {
+                    atoms = model.getAtoms();
+                    console.log('✓ Obtenidos átomos mediante getAtoms():', atoms.length);
+                } else if (Array.isArray(model)) {
+                    atoms = model;
+                    console.log('✓ Modelo es array directo:', atoms.length);
+                } else if (model.atoms && Array.isArray(model.atoms)) {
+                    atoms = model.atoms;
+                    console.log('✓ Obtenidos átomos mediante model.atoms:', atoms.length);
+                } else if (model.length !== undefined) {
+                    // Si model tiene length, intentar acceder como array
                     for (let i = 0; i < model.length; i++) {
                         try {
-                            let atom = null;
-                            
-                            // Usar el mismo método que funciona en analyzeModelAndCreateMapping
-                            if (typeof model.atom === 'function') {
-                                atom = model.atom(i);
-                            } else if (Array.isArray(model) && model[i]) {
-                                atom = model[i];
-                            } else if (model[i] !== undefined) {
-                                atom = model[i];
-                            }
-                            
-                            if (atom) {
-                                let x, y, z;
-                                
-                                // Obtener coordenadas
-                                if (atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
-                                    x = atom.x;
-                                    y = atom.y;
-                                    z = atom.z;
-                                } else if (atom.coord && Array.isArray(atom.coord) && atom.coord.length >= 3) {
-                                    x = atom.coord[0];
-                                    y = atom.coord[1];
-                                    z = atom.coord[2];
-                                }
-                                
-                                if (x !== undefined && y !== undefined && z !== undefined) {
-                                    // Guardar coordenadas usando el índice como serial (base 0)
-                                    serialToCoords[i] = {x: x, y: y, z: z};
-                                    // También guardar como serial base 1 (i + 1)
-                                    serialToCoords[i + 1] = {x: x, y: y, z: z};
-                                }
-                            }
-                        } catch(e) {
-                            // Continuar con el siguiente átomo
-                        }
+                            if (model[i]) atoms.push(model[i]);
+                        } catch(e) {}
                     }
-                } catch(e) {
-                    console.warn('Error al obtener átomos del modelo:', e);
+                    console.log('✓ Obtenidos átomos iterando model.length:', atoms.length);
                 }
             }
             
-            // Agregar etiquetas usando el mapeo de coordenadas
-            for (const [atomName, label] of Object.entries(atomLabels)) {
-                const serial = labelSerialMap[atomName];
-                if (serial !== undefined) {
-                    try {
-                        // Buscar coordenadas en el mapeo
-                        const coords = serialToCoords[serial] || serialToCoords[serial - 1] || serialToCoords[serial + 1];
-                        
-                        if (coords) {
+            // Mostrar información de los primeros átomos para referencia
+            if (atoms.length > 0) {
+                console.log('\n=== PRIMEROS 20 ÁTOMOS DEL MODELO ===');
+                for (let i = 0; i < Math.min(20, atoms.length); i++) {
+                    const atom = atoms[i];
+                    let coords = 'N/A';
+                    if (atom.x !== undefined) {
+                        coords = `(${atom.x.toFixed(3)}, ${atom.y.toFixed(3)}, ${atom.z.toFixed(3)})`;
+                    } else if (atom.coord && Array.isArray(atom.coord)) {
+                        coords = `(${atom.coord[0].toFixed(3)}, ${atom.coord[1].toFixed(3)}, ${atom.coord[2].toFixed(3)})`;
+                    }
+                    console.log(`Índice ${i}: Elemento=${atom.elem || '?'}, Serial=${atom.serial || i}, Coords=${coords}`);
+                }
+            } else {
+                console.warn('⚠ No se pudieron obtener átomos del modelo');
+            }
+            
+            console.log('\n=== INTENTANDO AGREGAR ETIQUETAS ===');
+            
+            // Si no se obtuvieron átomos, intentar usar el selector de serial directamente
+            if (atoms.length === 0) {
+                console.log('⚠ No se pudieron obtener átomos del modelo, usando método alternativo con serial');
+                // Intentar agregar etiquetas usando serial directamente
+                for (const [atomName, label] of Object.entries(atomLabels)) {
+                    const serial = labelSerialMap[atomName];
+                    if (serial !== undefined) {
+                        try {
+                            console.log(`Intentando etiquetar ${atomName} (${label}) con serial ${serial} (método alternativo)`);
+                            
                             // Determinar color de fondo según el elemento
                             let bgColor = '#dc3545';
                             let borderColor = '#c82333';
@@ -1121,9 +1128,9 @@
                                 borderColor = '#5a6268';
                             }
                             
-                            // Agregar etiqueta usando coordenadas
+                            // Intentar usar serial directamente en la posición
                             viewerNumerado.addLabel(label, {
-                                position: {x: coords.x, y: coords.y, z: coords.z},
+                                position: {serial: serial},
                                 fontSize: 16,
                                 fontColor: 'white',
                                 backgroundColor: bgColor,
@@ -1133,20 +1140,107 @@
                                 borderColor: borderColor,
                                 inFront: true
                             });
+                            console.log(`✓ Etiqueta ${label} agregada con serial ${serial}`);
+                        } catch(e) {
+                            console.error(`✗ Error al agregar etiqueta para ${atomName} (serial ${serial}):`, e);
                         }
-                    } catch(e) {
-                        console.warn(`Error al agregar etiqueta para ${atomName}:`, e);
+                    }
+                }
+            } else {
+                // Agregar etiquetas usando coordenadas
+                console.log(`\nAgregando etiquetas usando coordenadas de ${atoms.length} átomos disponibles`);
+                for (const [atomName, label] of Object.entries(atomLabels)) {
+                    const serial = labelSerialMap[atomName];
+                    if (serial !== undefined && atoms.length > 0) {
+                        try {
+                            let atomIndex = serial === 0 ? 0 : serial - 1;
+                            console.log(`\n--- Procesando ${atomName} (${label}) ---`);
+                            console.log(`  Serial mapeado: ${serial}`);
+                            console.log(`  Índice calculado: ${atomIndex}`);
+                            
+                            if (atomIndex >= 0 && atomIndex < atoms.length) {
+                                const atom = atoms[atomIndex];
+                                console.log(`  Átomo encontrado en índice ${atomIndex}:`, atom);
+                                
+                                if (atom) {
+                                    let x, y, z;
+                                    if (atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
+                                        x = atom.x;
+                                        y = atom.y;
+                                        z = atom.z;
+                                        console.log(`  Coordenadas (x/y/z): (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})`);
+                                    } else if (atom.coord && Array.isArray(atom.coord) && atom.coord.length >= 3) {
+                                        x = atom.coord[0];
+                                        y = atom.coord[1];
+                                        z = atom.coord[2];
+                                        console.log(`  Coordenadas (coord[]): (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})`);
+                                    } else if (atom.position && atom.position.length >= 3) {
+                                        x = atom.position[0];
+                                        y = atom.position[1];
+                                        z = atom.position[2];
+                                        console.log(`  Coordenadas (position[]): (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})`);
+                                    } else {
+                                        console.warn(`  ⚠ No se encontraron coordenadas para el átomo en índice ${atomIndex}`);
+                                    }
+                                    
+                                    if (x !== undefined && y !== undefined && z !== undefined) {
+                                        let bgColor = '#dc3545';
+                                        let borderColor = '#c82333';
+                                        
+                                        if (label.startsWith('O')) {
+                                            bgColor = '#dc3545';
+                                            borderColor = '#c82333';
+                                        } else if (label.startsWith('N')) {
+                                            bgColor = '#0d6efd';
+                                            borderColor = '#0a58ca';
+                                        } else if (label.startsWith('C')) {
+                                            bgColor = '#6c757d';
+                                            borderColor = '#5a6268';
+                                        }
+                                        
+                                        viewerNumerado.addLabel(label, {
+                                            position: {x: x, y: y, z: z},
+                                            fontSize: 16,
+                                            fontColor: 'white',
+                                            backgroundColor: bgColor,
+                                            showBackground: true,
+                                            backgroundOpacity: 0.95,
+                                            borderThickness: 3,
+                                            borderColor: borderColor,
+                                            inFront: true
+                                        });
+                                        console.log(`  ✓ Etiqueta ${label} agregada en coordenadas (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})`);
+                                    } else {
+                                        console.warn(`  ✗ No se pudieron obtener coordenadas válidas para ${atomName}`);
+                                    }
+                                } else {
+                                    console.warn(`  ✗ Átomo es null/undefined en índice ${atomIndex}`);
+                                }
+                            } else {
+                                console.warn(`  ✗ Índice ${atomIndex} fuera de rango (0-${atoms.length-1})`);
+                            }
+                        } catch(e) {
+                            console.error(`✗ Error al agregar etiqueta para ${atomName} (serial ${serial}):`, e);
+                        }
+                    } else {
+                        console.warn(`⚠ No hay serial mapeado para ${atomName}`);
                     }
                 }
             }
             
+            console.log('\n=== FIN DEPURACIÓN DE ETIQUETAS ===');
+            
             // Renderizar después de agregar las etiquetas
             viewerNumerado.render();
+            
+            // Agregar rotación inicial
             viewerNumerado.rotate(20, 'y');
             viewerNumerado.render();
         }, 200);
     });
     </script>
+    <!-- 3Dmol.js CDN -->
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
     <script>
         // Función para resaltar átomos por índice (sin scroll ni focus)
         function highlightGroup(viewer, atomIndices, color) {
