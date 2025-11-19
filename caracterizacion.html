@@ -728,10 +728,9 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
-    <!-- 3Dmol.js CDN -->
-    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
-    <script>
+        <!-- 3Dmol.js CDN -->
+        <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+        <script>
     // Tabla interactiva de hibridación
     // Modal overlay para visualización 3D de cada átomo/grupo
     let overlayViewer = null;
@@ -1001,6 +1000,13 @@
         backgroundColor: 0xffffff
     });
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", viewerNumerado, {}, function() {
+        // Verificar que el modelo se cargó correctamente
+        const model = viewerNumerado.getModel();
+        if (!model || !model.length) {
+            console.error('Error: El modelo no se cargó correctamente');
+            return;
+        }
+        
         // Primero renderizar el modelo básico
         // Estilos mejorados por elemento químico con colores más vibrantes
         viewerNumerado.setStyle({elem: 'C'}, {
@@ -1039,40 +1045,15 @@
             };
             
             // Usar EXACTAMENTE el mismo mapeo que se usa en la tabla de hibridación (atomSerialMap)
-            // Este mapeo está definido más arriba en el código y es el que funciona correctamente
             const labelSerialMap = atomSerialMap;
             
-            // Obtener el modelo y los átomos para acceder a las coordenadas
-            const model = viewerNumerado.getModel();
-            let atoms = [];
-            
-            // Intentar obtener los átomos de diferentes formas según la versión de 3Dmol
-            if (model) {
-                if (typeof model.getAtoms === 'function') {
-                    atoms = model.getAtoms();
-                } else if (Array.isArray(model)) {
-                    atoms = model;
-                } else if (model.atoms && Array.isArray(model.atoms)) {
-                    atoms = model.atoms;
-                } else if (model.length !== undefined) {
-                    // Si model tiene length, intentar acceder como array
-                    for (let i = 0; i < model.length; i++) {
-                        try {
-                            if (model[i]) atoms.push(model[i]);
-                        } catch(e) {}
-                    }
-                }
-            }
-            
-            // Obtener coordenadas usando model.atom() como en analyzeModelAndCreateMapping
-            // Estrategia: Obtener TODOS los átomos del modelo y crear un mapeo serial -> coordenadas
+            // Obtener el modelo y crear mapeo de coordenadas
             const model = viewerNumerado.getModel();
             const serialToCoords = {}; // Mapeo serial -> {x, y, z}
             
-            // Obtener todos los átomos y sus coordenadas usando el mismo método que analyzeModelAndCreateMapping
+            // Obtener todos los átomos y sus coordenadas
             if (model && model.length) {
                 try {
-                    // Iterar sobre todos los átomos del modelo
                     for (let i = 0; i < model.length; i++) {
                         try {
                             let atom = null;
@@ -1089,7 +1070,7 @@
                             if (atom) {
                                 let x, y, z;
                                 
-                                // Obtener coordenadas en diferentes formatos
+                                // Obtener coordenadas
                                 if (atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
                                     x = atom.x;
                                     y = atom.y;
@@ -1103,7 +1084,7 @@
                                 if (x !== undefined && y !== undefined && z !== undefined) {
                                     // Guardar coordenadas usando el índice como serial (base 0)
                                     serialToCoords[i] = {x: x, y: y, z: z};
-                                    // También guardar como serial base 1 (i + 1) por si acaso
+                                    // También guardar como serial base 1 (i + 1)
                                     serialToCoords[i + 1] = {x: x, y: y, z: z};
                                 }
                             }
@@ -1121,7 +1102,7 @@
                 const serial = labelSerialMap[atomName];
                 if (serial !== undefined) {
                     try {
-                        // Buscar coordenadas en el mapeo (probar serial tal cual, serial - 1, y serial + 1)
+                        // Buscar coordenadas en el mapeo
                         const coords = serialToCoords[serial] || serialToCoords[serial - 1] || serialToCoords[serial + 1];
                         
                         if (coords) {
@@ -1152,8 +1133,6 @@
                                 borderColor: borderColor,
                                 inFront: true
                             });
-                        } else {
-                            console.warn(`No se encontraron coordenadas para ${atomName} (serial ${serial})`);
                         }
                     } catch(e) {
                         console.warn(`Error al agregar etiqueta para ${atomName}:`, e);
@@ -1163,15 +1142,11 @@
             
             // Renderizar después de agregar las etiquetas
             viewerNumerado.render();
-            
-            // Agregar rotación inicial
             viewerNumerado.rotate(20, 'y');
             viewerNumerado.render();
         }, 200);
     });
     </script>
-    <!-- 3Dmol.js CDN -->
-    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
     <script>
         // Función para resaltar átomos por índice (sin scroll ni focus)
         function highlightGroup(viewer, atomIndices, color) {
