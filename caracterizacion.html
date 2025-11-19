@@ -685,6 +685,7 @@
     };
     
     function showOverlayHibridacion(atomName, infoHtml, imageName) {
+        // Mostrar el overlay primero para que el contenedor tenga dimensiones
         document.getElementById('overlay-hibridacion').style.display = 'flex';
         document.getElementById('overlay-hibridacion-info').innerHTML = infoHtml;
         
@@ -703,7 +704,30 @@
                 overlayViewer.clear();
             } catch(e) {}
         }
-        overlayViewer = $3Dmol.createViewer("overlay-hibridacion-viewer", {backgroundColor: "white"});
+        
+        // Esperar un momento para que el DOM se actualice y el contenedor tenga dimensiones
+        // antes de crear el visor
+        setTimeout(function() {
+            const viewerContainer = document.getElementById("overlay-hibridacion-viewer");
+            if (viewerContainer && viewerContainer.offsetWidth > 0 && viewerContainer.offsetHeight > 0) {
+                overlayViewer = $3Dmol.createViewer("overlay-hibridacion-viewer", {backgroundColor: "white"});
+                loadAtomModel(atomName);
+            } else {
+                // Si aún no tiene dimensiones, intentar de nuevo
+                setTimeout(function() {
+                    overlayViewer = $3Dmol.createViewer("overlay-hibridacion-viewer", {backgroundColor: "white"});
+                    loadAtomModel(atomName);
+                }, 100);
+            }
+        }, 50);
+    }
+    
+    function loadAtomModel(atomName) {
+        
+        if (!overlayViewer) {
+            console.warn('Visor no está listo aún');
+            return;
+        }
         
         // Obtener el serial del átomo
         let atomSerial = atomSerialMap[atomName];
@@ -762,6 +786,19 @@
                 overlayViewer.zoomTo();
             }
             overlayViewer.render();
+            
+            // Asegurar que el visor se redimensione correctamente después de renderizar
+            // Esto previene el warning de WebGL sobre framebuffer incompleto
+            setTimeout(function() {
+                if (overlayViewer) {
+                    try {
+                        overlayViewer.resize();
+                        overlayViewer.render();
+                    } catch(e) {
+                        // Ignorar errores de resize
+                    }
+                }
+            }, 100);
         });
     }
     document.addEventListener('DOMContentLoaded', function() {
