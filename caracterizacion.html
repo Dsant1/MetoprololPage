@@ -335,12 +335,12 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-7 mb-4">
-                        <div class="accordion" id="accordionHibridacion">
+                        <div class="accordion" id="accordionHibridacion" style="--bs-accordion-active-bg: rgba(220,53,69,0.1); --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(220,53,69,0.25);">
                             <!-- Grupo 2-propanol -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border-danger">
                                 <h2 class="accordion-header" id="heading2propanol">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2propanol" aria-expanded="true" aria-controls="collapse2propanol">
-                                        <strong>Grupo 2-propanol</strong> <span class="ms-2 text-muted small">(C1, C2, C3, O11)</span>
+                                    <button class="accordion-button text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2propanol" aria-expanded="true" aria-controls="collapse2propanol" style="background-color: #dc3545;">
+                                        <strong>Grupo 2-propanol</strong> <span class="ms-2 small" style="opacity: 0.9;">(C1, C2, C3, O11)</span>
                                     </button>
                                 </h2>
                                 <div id="collapse2propanol" class="accordion-collapse collapse show" aria-labelledby="heading2propanol" data-bs-parent="#accordionHibridacion">
@@ -398,10 +398,10 @@
                             </div>
                             
                             <!-- Grupo Fenoxi (Anillo aromático) -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border-danger">
                                 <h2 class="accordion-header" id="headingFenoxi">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFenoxi" aria-expanded="false" aria-controls="collapseFenoxi">
-                                        <strong>Grupo Fenoxi (Anillo aromático)</strong> <span class="ms-2 text-muted small">(O4, C1', C2', C3', C4', C5', C6')</span>
+                                    <button class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFenoxi" aria-expanded="false" aria-controls="collapseFenoxi" style="background-color: #dc3545;">
+                                        <strong>Grupo Fenoxi (Anillo aromático)</strong> <span class="ms-2 small" style="opacity: 0.9;">(O4, C1', C2', C3', C4', C5', C6')</span>
                                     </button>
                                 </h2>
                                 <div id="collapseFenoxi" class="accordion-collapse collapse" aria-labelledby="headingFenoxi" data-bs-parent="#accordionHibridacion">
@@ -483,10 +483,10 @@
                             </div>
                             
                             <!-- Grupo Isopropilamina -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border-danger">
                                 <h2 class="accordion-header" id="headingIsopropilamina">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIsopropilamina" aria-expanded="false" aria-controls="collapseIsopropilamina">
-                                        <strong>Grupo Isopropilamina</strong> <span class="ms-2 text-muted small">(N12, C13, C14, C15)</span>
+                                    <button class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIsopropilamina" aria-expanded="false" aria-controls="collapseIsopropilamina" style="background-color: #dc3545;">
+                                        <strong>Grupo Isopropilamina</strong> <span class="ms-2 small" style="opacity: 0.9;">(N12, C13, C14, C15)</span>
                                     </button>
                                 </h2>
                                 <div id="collapseIsopropilamina" class="accordion-collapse collapse" aria-labelledby="headingIsopropilamina" data-bs-parent="#accordionHibridacion">
@@ -544,10 +544,10 @@
                             </div>
                             
                             <!-- Grupo Metoxietilo -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border-danger">
                                 <h2 class="accordion-header" id="headingMetoxietil">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMetoxietil" aria-expanded="false" aria-controls="collapseMetoxietil">
-                                        <strong>Grupo Metoxietilo</strong> <span class="ms-2 text-muted small">(C16, C17, O18, C19)</span>
+                                    <button class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMetoxietil" aria-expanded="false" aria-controls="collapseMetoxietil" style="background-color: #dc3545;">
+                                        <strong>Grupo Metoxietilo</strong> <span class="ms-2 small" style="opacity: 0.9;">(C16, C17, O18, C19)</span>
                                     </button>
                                 </h2>
                                 <div id="collapseMetoxietil" class="accordion-collapse collapse" aria-labelledby="headingMetoxietil" data-bs-parent="#accordionHibridacion">
@@ -620,6 +620,31 @@
                     </div>
                 </div>
                 <style>
+                    /* Estilos para el acordeón con tema rojo */
+                    #accordionHibridacion .accordion-button:not(.collapsed) {
+                        background-color: #dc3545 !important;
+                        color: white !important;
+                        box-shadow: inset 0 -1px 0 rgba(0,0,0,0.125);
+                    }
+                    #accordionHibridacion .accordion-button.collapsed {
+                        background-color: rgba(220,53,69,0.8) !important;
+                        color: white !important;
+                    }
+                    #accordionHibridacion .accordion-button:hover {
+                        background-color: #c82333 !important;
+                        color: white !important;
+                    }
+                    #accordionHibridacion .accordion-button:focus {
+                        box-shadow: 0 0 0 0.25rem rgba(220,53,69,0.25) !important;
+                    }
+                    #accordionHibridacion .accordion-item {
+                        border-color: #dc3545 !important;
+                    }
+                    #accordionHibridacion .table-hover tbody tr:hover {
+                        background-color: rgba(220,53,69,0.1) !important;
+                        cursor: pointer;
+                    }
+                    
                     @media (max-width: 768px) {
                         #overlay-hibridacion > div {
                             flex-direction: column !important;
@@ -909,22 +934,26 @@
         };
     });
     document.addEventListener('DOMContentLoaded', function() {
-        const filas = document.querySelectorAll('#tabla-hibridacion tbody tr');
-        filas.forEach(fila => {
-            fila.addEventListener('click', function() {
-                const info = this.querySelectorAll('td');
-                const atomName = this.dataset.atom || info[0].innerText;
-                const imageName = this.dataset.image || null;
-                
-                let detalle = `<b>Átomo:</b> ${info[0].innerText}<br>`;
-                detalle += `<b>Hibridación:</b> ${info[1].innerText}<br>`;
-                detalle += `<b>Clase:</b> ${info[2].innerText}<br>`;
-                detalle += `<b>Ángulos de enlace:</b> ${info[3].innerText}<br>`;
-                detalle += `<b>Tipo de enlaces:</b> ${info[4].innerText}<br>`;
-                detalle += `<b>Geometría molecular:</b> ${info[5].innerText}`;
-                
-                showOverlayHibridacion(atomName, detalle, imageName);
-            });
+        // Usar delegación de eventos para que funcione con todas las tablas del acordeón
+        document.addEventListener('click', function(e) {
+            // Verificar si el clic fue en una fila de alguna de las tablas de hibridación
+            const fila = e.target.closest('#tabla-hibridacion-2propanol tbody tr, #tabla-hibridacion-fenoxi tbody tr, #tabla-hibridacion-isopropilamina tbody tr, #tabla-hibridacion-metoxietil tbody tr');
+            if (fila) {
+                const info = fila.querySelectorAll('td');
+                if (info.length > 0) {
+                    const atomName = fila.dataset.atom || info[0].innerText;
+                    const imageName = fila.dataset.image || null;
+                    
+                    let detalle = `<b>Átomo:</b> ${info[0].innerText}<br>`;
+                    detalle += `<b>Hibridación:</b> ${info[1].innerText}<br>`;
+                    detalle += `<b>Clase:</b> ${info[2].innerText}<br>`;
+                    detalle += `<b>Ángulos de enlace:</b> ${info[3].innerText}<br>`;
+                    detalle += `<b>Tipo de enlaces:</b> ${info[4].innerText}<br>`;
+                    detalle += `<b>Geometría molecular:</b> ${info[5].innerText}`;
+                    
+                    showOverlayHibridacion(atomName, detalle, imageName);
+                }
+            }
         });
     });
     // Visualizador 2D
