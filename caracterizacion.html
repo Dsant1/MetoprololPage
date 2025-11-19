@@ -1038,16 +1038,9 @@
                 'C4\'': "C4'", 'C5\'': "C5'", 'C6\'': "C6'"
             };
             
-            // Mapeo de nombres a seriales (usando el mismo mapeo de la tabla)
-            const labelSerialMap = {
-                'C1': 7, 'C2': 4, 'C3': 5,
-                'O4': 0, 'O11': 1, 'O18': 2,
-                'N12': 3,
-                'C13': 6, 'C14': 8, 'C15': 9,
-                'C16': 12, 'C17': 17, 'C19': 18,
-                'C1\'': 11, 'C2\'': 16, 'C3\'': 14,
-                'C4\'': 10, 'C5\'': 13, 'C6\'': 15
-            };
+            // Usar EXACTAMENTE el mismo mapeo que se usa en la tabla de hibridación (atomSerialMap)
+            // Este mapeo está definido más arriba en el código y es el que funciona correctamente
+            const labelSerialMap = atomSerialMap;
             
             // Obtener el modelo y los átomos para acceder a las coordenadas
             const model = viewerNumerado.getModel();
