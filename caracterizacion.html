@@ -1041,37 +1041,60 @@
             'C4\'': 10, 'C5\'': 13, 'C6\'': 15
         };
         
+        // Obtener el modelo para acceder a las coordenadas de los átomos
+        const model = viewerNumerado.getModel();
+        
         // Agregar etiquetas mejoradas con mejor visibilidad
         for (const [atomName, label] of Object.entries(atomLabels)) {
             const serial = labelSerialMap[atomName];
-            if (serial !== undefined) {
-                // Determinar color de fondo según el elemento
-                let bgColor = '#dc3545'; // Rojo por defecto
-                let borderColor = '#c82333';
-                
-                if (label.startsWith('O')) {
-                    bgColor = '#dc3545'; // Rojo para oxígeno
-                    borderColor = '#c82333';
-                } else if (label.startsWith('N')) {
-                    bgColor = '#0d6efd'; // Azul para nitrógeno
-                    borderColor = '#0a58ca';
-                } else if (label.startsWith('C')) {
-                    bgColor = '#6c757d'; // Gris oscuro para carbono
-                    borderColor = '#5a6268';
+            if (serial !== undefined && model) {
+                try {
+                    // Obtener el átomo usando el serial (convertir a índice base 0 si es necesario)
+                    let atomIndex = serial;
+                    // Si el serial es 0, usar índice 0; si es > 0, podría necesitar ajuste
+                    if (serial === 0) {
+                        atomIndex = 0;
+                    } else if (serial > 0 && serial <= model.length) {
+                        atomIndex = serial - 1; // Convertir a índice base 0
+                    }
+                    
+                    const atom = model.atom(atomIndex);
+                    if (atom && atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
+                        // Determinar color de fondo según el elemento
+                        let bgColor = '#dc3545'; // Rojo por defecto
+                        let borderColor = '#c82333';
+                        
+                        if (label.startsWith('O')) {
+                            bgColor = '#dc3545'; // Rojo para oxígeno
+                            borderColor = '#c82333';
+                        } else if (label.startsWith('N')) {
+                            bgColor = '#0d6efd'; // Azul para nitrógeno
+                            borderColor = '#0a58ca';
+                        } else if (label.startsWith('C')) {
+                            bgColor = '#6c757d'; // Gris oscuro para carbono
+                            borderColor = '#5a6268';
+                        }
+                        
+                        // Agregar etiqueta usando coordenadas x, y, z del átomo
+                        viewerNumerado.addLabel(label, {
+                            position: {
+                                x: atom.x,
+                                y: atom.y,
+                                z: atom.z
+                            },
+                            fontSize: 16,
+                            fontColor: 'white',
+                            backgroundColor: bgColor,
+                            showBackground: true,
+                            backgroundOpacity: 0.95,
+                            borderThickness: 3,
+                            borderColor: borderColor,
+                            inFront: true
+                        });
+                    }
+                } catch(e) {
+                    console.warn(`Error al agregar etiqueta para ${atomName} (serial ${serial}):`, e);
                 }
-                
-                viewerNumerado.addLabel(label, {
-                    font: 'Arial Bold',
-                    fontSize: 16,
-                    fontColor: 'white',
-                    backgroundColor: bgColor,
-                    borderThickness: 3,
-                    borderColor: borderColor,
-                    backgroundOpacity: 0.95,
-                    position: {serial: serial},
-                    alignment: 'center',
-                    inFront: true
-                });
             }
         }
         
