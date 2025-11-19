@@ -1041,57 +1041,95 @@
             'C4\'': 10, 'C5\'': 13, 'C6\'': 15
         };
         
-        // Obtener el modelo para acceder a las coordenadas de los átomos
+        // Obtener el modelo y los átomos para acceder a las coordenadas
         const model = viewerNumerado.getModel();
+        let atoms = [];
+        
+        // Intentar obtener los átomos de diferentes formas según la versión de 3Dmol
+        if (model) {
+            if (typeof model.getAtoms === 'function') {
+                atoms = model.getAtoms();
+            } else if (Array.isArray(model)) {
+                atoms = model;
+            } else if (model.atoms && Array.isArray(model.atoms)) {
+                atoms = model.atoms;
+            } else if (model.length !== undefined) {
+                // Si model tiene length, intentar acceder como array
+                for (let i = 0; i < model.length; i++) {
+                    try {
+                        if (model[i]) atoms.push(model[i]);
+                    } catch(e) {}
+                }
+            }
+        }
         
         // Agregar etiquetas mejoradas con mejor visibilidad
         for (const [atomName, label] of Object.entries(atomLabels)) {
             const serial = labelSerialMap[atomName];
-            if (serial !== undefined && model) {
+            if (serial !== undefined && atoms.length > 0) {
                 try {
                     // Obtener el átomo usando el serial (convertir a índice base 0 si es necesario)
                     let atomIndex = serial;
                     // Si el serial es 0, usar índice 0; si es > 0, podría necesitar ajuste
                     if (serial === 0) {
                         atomIndex = 0;
-                    } else if (serial > 0 && serial <= model.length) {
+                    } else if (serial > 0 && serial <= atoms.length) {
                         atomIndex = serial - 1; // Convertir a índice base 0
                     }
                     
-                    const atom = model.atom(atomIndex);
-                    if (atom && atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
-                        // Determinar color de fondo según el elemento
-                        let bgColor = '#dc3545'; // Rojo por defecto
-                        let borderColor = '#c82333';
-                        
-                        if (label.startsWith('O')) {
-                            bgColor = '#dc3545'; // Rojo para oxígeno
-                            borderColor = '#c82333';
-                        } else if (label.startsWith('N')) {
-                            bgColor = '#0d6efd'; // Azul para nitrógeno
-                            borderColor = '#0a58ca';
-                        } else if (label.startsWith('C')) {
-                            bgColor = '#6c757d'; // Gris oscuro para carbono
-                            borderColor = '#5a6268';
+                    if (atomIndex >= 0 && atomIndex < atoms.length) {
+                        const atom = atoms[atomIndex];
+                        if (atom) {
+                            // Obtener coordenadas del átomo (pueden estar en diferentes formatos)
+                            let x, y, z;
+                            if (atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
+                                x = atom.x;
+                                y = atom.y;
+                                z = atom.z;
+                            } else if (atom.coord && Array.isArray(atom.coord) && atom.coord.length >= 3) {
+                                x = atom.coord[0];
+                                y = atom.coord[1];
+                                z = atom.coord[2];
+                            } else if (atom.position && atom.position.length >= 3) {
+                                x = atom.position[0];
+                                y = atom.position[1];
+                                z = atom.position[2];
+                            }
+                            
+                            if (x !== undefined && y !== undefined && z !== undefined) {
+                                // Determinar color de fondo según el elemento
+                                let bgColor = '#dc3545'; // Rojo por defecto
+                                let borderColor = '#c82333';
+                                
+                                if (label.startsWith('O')) {
+                                    bgColor = '#dc3545'; // Rojo para oxígeno
+                                    borderColor = '#c82333';
+                                } else if (label.startsWith('N')) {
+                                    bgColor = '#0d6efd'; // Azul para nitrógeno
+                                    borderColor = '#0a58ca';
+                                } else if (label.startsWith('C')) {
+                                    bgColor = '#6c757d'; // Gris oscuro para carbono
+                                    borderColor = '#5a6268';
+                                }
+                                
+                                // Agregar etiqueta usando coordenadas x, y, z del átomo
+                                viewerNumerado.addLabel(label, {
+                                    position: {
+                                        x: x,
+                                        y: y,
+                                        z: z
+                                    },
+                                    fontSize: 16,
+                                    fontColor: 'white',
+                                    backgroundColor: bgColor,
+                                    showBackground: true,
+                                    backgroundOpacity: 0.95,
+                                    borderThickness: 3,
+                                    borderColor: borderColor,
+                                    inFront: true
+                                });
+                            }
                         }
-                        
-                        // Agregar etiqueta usando coordenadas x, y, z del átomo
-                        viewerNumerado.addLabel(label, {
-                            position: {
-                                x: atom.x,
-                                y: atom.y,
-                                z: atom.z
-                            },
-                            fontSize: 16,
-                            fontColor: 'white',
-                            backgroundColor: bgColor,
-                            showBackground: true,
-                            backgroundOpacity: 0.95,
-                            borderThickness: 3,
-                            borderColor: borderColor,
-                            inFront: true
-                        });
-                    }
                 } catch(e) {
                     console.warn(`Error al agregar etiqueta para ${atomName} (serial ${serial}):`, e);
                 }
