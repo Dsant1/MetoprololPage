@@ -335,173 +335,274 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-7 mb-4">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-bordered align-middle bg-white" id="tabla-hibridacion">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Átomo</th>
-                                        <th>Hibridación</th>
-                                        <th>Clase</th>
-                                        <th>Ángulos de enlace</th>
-                                        <th>Tipo de enlaces</th>
-                                        <th>Geometría molecular</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr data-atom="C1" data-image="2propanol">
-                                        <td>C1</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (C-C, C-O, 2 C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="C2" data-image="2propanol">
-                                        <td>C2</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático (quiral)</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (2 C-C, C-O, C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="C3" data-image="2propanol">
-                                        <td>C3</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (C-C, C-N, 2 C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="O4" data-image="fenoxi">
-                                        <td>O4</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Oxígeno de éter</td>
-                                        <td>~104.5°</td>
-                                        <td>2 enlaces σ (C-O-C), 2 pares libres</td>
-                                        <td><b>Angular</b></td>
-                                    </tr>
-                                    <tr data-atom="C1'" data-image="fenoxi">
-                                        <td>C1'</td>
-                                        <td><b>sp²</b></td>
-                                        <td>Carbono aromático</td>
-                                        <td>120°</td>
-                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
-                                        <td><b>Trigonal plana</b></td>
-                                    </tr>
-                                    <tr data-atom="C2'" data-image="fenoxi">
-                                        <td>C2'</td>
-                                        <td><b>sp²</b></td>
-                                        <td>Carbono aromático</td>
-                                        <td>120°</td>
-                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
-                                        <td><b>Trigonal plana</b></td>
-                                    </tr>
-                                    <tr data-atom="C3'" data-image="fenoxi">
-                                        <td>C3'</td>
-                                        <td><b>sp²</b></td>
-                                        <td>Carbono aromático</td>
-                                        <td>120°</td>
-                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
-                                        <td><b>Trigonal plana</b></td>
-                                    </tr>
-                                    <tr data-atom="C4'" data-image="fenoxi">
-                                        <td>C4'</td>
-                                        <td><b>sp²</b></td>
-                                        <td>Carbono aromático</td>
-                                        <td>120°</td>
-                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
-                                        <td><b>Trigonal plana</b></td>
-                                    </tr>
-                                    <tr data-atom="C5'" data-image="fenoxi">
-                                        <td>C5'</td>
-                                        <td><b>sp²</b></td>
-                                        <td>Carbono aromático</td>
-                                        <td>120°</td>
-                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
-                                        <td><b>Trigonal plana</b></td>
-                                    </tr>
-                                    <tr data-atom="C6'" data-image="fenoxi">
-                                        <td>C6'</td>
-                                        <td><b>sp²</b></td>
-                                        <td>Carbono aromático</td>
-                                        <td>120°</td>
-                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
-                                        <td><b>Trigonal plana</b></td>
-                                    </tr>
-                                    <tr data-atom="O11" data-image="2propanol">
-                                        <td>O11</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Oxígeno de alcohol</td>
-                                        <td>~104.5°</td>
-                                        <td>2 enlaces σ (C-O, O-H), 2 pares libres</td>
-                                        <td><b>Angular</b></td>
-                                    </tr>
-                                    <tr data-atom="N12" data-image="isopropilamina">
-                                        <td>N12</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Nitrógeno de amina 2°</td>
-                                        <td>~107°</td>
-                                        <td>3 enlaces σ (C-N-C, N-H), 1 par libre</td>
-                                        <td><b>Piramidal trigonal</b></td>
-                                    </tr>
-                                    <tr data-atom="C13" data-image="isopropilamina">
-                                        <td>C13</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (C-N, 2 C-C, C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="C14" data-image="isopropilamina">
-                                        <td>C14</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático (metilo)</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (C-C, 3 C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="C15" data-image="isopropilamina">
-                                        <td>C15</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático (metilo)</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (C-C, 3 C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="C16" data-image="metoxietil">
-                                        <td>C16</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (C-C aromático, C-C, 2 C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="C17" data-image="metoxietil">
-                                        <td>C17</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (2 C-C, C-O, C-H, 2 C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                    <tr data-atom="O18" data-image="metoxietil">
-                                        <td>O18</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Oxígeno de éter</td>
-                                        <td>~104.5°</td>
-                                        <td>2 enlaces σ (C-O-C), 2 pares libres</td>
-                                        <td><b>Angular</b></td>
-                                    </tr>
-                                    <tr data-atom="C19" data-image="metoxietil">
-                                        <td>C19</td>
-                                        <td><b>sp³</b></td>
-                                        <td>Carbono alifático (metilo)</td>
-                                        <td>~109.5°</td>
-                                        <td>4 enlaces σ (C-O, 3 C-H)</td>
-                                        <td><b>Tetraédrica</b></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="accordion" id="accordionHibridacion">
+                            <!-- Grupo 2-propanol -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading2propanol">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2propanol" aria-expanded="true" aria-controls="collapse2propanol">
+                                        <strong>Grupo 2-propanol</strong> <span class="ms-2 text-muted small">(C1, C2, C3, O11)</span>
+                                    </button>
+                                </h2>
+                                <div id="collapse2propanol" class="accordion-collapse collapse show" aria-labelledby="heading2propanol" data-bs-parent="#accordionHibridacion">
+                                    <div class="accordion-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-bordered align-middle bg-white mb-0" id="tabla-hibridacion-2propanol">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Átomo</th>
+                                                        <th>Hibridación</th>
+                                                        <th>Clase</th>
+                                                        <th>Ángulos de enlace</th>
+                                                        <th>Tipo de enlaces</th>
+                                                        <th>Geometría molecular</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-atom="C1" data-image="2propanol">
+                                                        <td>C1</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (C-C, C-O, 2 C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C2" data-image="2propanol">
+                                                        <td>C2</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático (quiral)</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (2 C-C, C-O, C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C3" data-image="2propanol">
+                                                        <td>C3</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (C-C, C-N, 2 C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                    <tr data-atom="O11" data-image="2propanol">
+                                                        <td>O11</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Oxígeno de alcohol</td>
+                                                        <td>~104.5°</td>
+                                                        <td>2 enlaces σ (C-O, O-H), 2 pares libres</td>
+                                                        <td><b>Angular</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Grupo Fenoxi (Anillo aromático) -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFenoxi">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFenoxi" aria-expanded="false" aria-controls="collapseFenoxi">
+                                        <strong>Grupo Fenoxi (Anillo aromático)</strong> <span class="ms-2 text-muted small">(O4, C1', C2', C3', C4', C5', C6')</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseFenoxi" class="accordion-collapse collapse" aria-labelledby="headingFenoxi" data-bs-parent="#accordionHibridacion">
+                                    <div class="accordion-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-bordered align-middle bg-white mb-0" id="tabla-hibridacion-fenoxi">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Átomo</th>
+                                                        <th>Hibridación</th>
+                                                        <th>Clase</th>
+                                                        <th>Ángulos de enlace</th>
+                                                        <th>Tipo de enlaces</th>
+                                                        <th>Geometría molecular</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-atom="O4" data-image="fenoxi">
+                                                        <td>O4</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Oxígeno de éter</td>
+                                                        <td>~104.5°</td>
+                                                        <td>2 enlaces σ (C-O-C), 2 pares libres</td>
+                                                        <td><b>Angular</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C1'" data-image="fenoxi">
+                                                        <td>C1'</td>
+                                                        <td><b>sp²</b></td>
+                                                        <td>Carbono aromático</td>
+                                                        <td>120°</td>
+                                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
+                                                        <td><b>Trigonal plana</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C2'" data-image="fenoxi">
+                                                        <td>C2'</td>
+                                                        <td><b>sp²</b></td>
+                                                        <td>Carbono aromático</td>
+                                                        <td>120°</td>
+                                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
+                                                        <td><b>Trigonal plana</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C3'" data-image="fenoxi">
+                                                        <td>C3'</td>
+                                                        <td><b>sp²</b></td>
+                                                        <td>Carbono aromático</td>
+                                                        <td>120°</td>
+                                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
+                                                        <td><b>Trigonal plana</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C4'" data-image="fenoxi">
+                                                        <td>C4'</td>
+                                                        <td><b>sp²</b></td>
+                                                        <td>Carbono aromático</td>
+                                                        <td>120°</td>
+                                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
+                                                        <td><b>Trigonal plana</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C5'" data-image="fenoxi">
+                                                        <td>C5'</td>
+                                                        <td><b>sp²</b></td>
+                                                        <td>Carbono aromático</td>
+                                                        <td>120°</td>
+                                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
+                                                        <td><b>Trigonal plana</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C6'" data-image="fenoxi">
+                                                        <td>C6'</td>
+                                                        <td><b>sp²</b></td>
+                                                        <td>Carbono aromático</td>
+                                                        <td>120°</td>
+                                                        <td>3 enlaces σ + 1 enlace π deslocalizado</td>
+                                                        <td><b>Trigonal plana</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Grupo Isopropilamina -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingIsopropilamina">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIsopropilamina" aria-expanded="false" aria-controls="collapseIsopropilamina">
+                                        <strong>Grupo Isopropilamina</strong> <span class="ms-2 text-muted small">(N12, C13, C14, C15)</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseIsopropilamina" class="accordion-collapse collapse" aria-labelledby="headingIsopropilamina" data-bs-parent="#accordionHibridacion">
+                                    <div class="accordion-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-bordered align-middle bg-white mb-0" id="tabla-hibridacion-isopropilamina">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Átomo</th>
+                                                        <th>Hibridación</th>
+                                                        <th>Clase</th>
+                                                        <th>Ángulos de enlace</th>
+                                                        <th>Tipo de enlaces</th>
+                                                        <th>Geometría molecular</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-atom="N12" data-image="isopropilamina">
+                                                        <td>N12</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Nitrógeno de amina 2°</td>
+                                                        <td>~107°</td>
+                                                        <td>3 enlaces σ (C-N-C, N-H), 1 par libre</td>
+                                                        <td><b>Piramidal trigonal</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C13" data-image="isopropilamina">
+                                                        <td>C13</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (C-N, 2 C-C, C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C14" data-image="isopropilamina">
+                                                        <td>C14</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático (metilo)</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (C-C, 3 C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C15" data-image="isopropilamina">
+                                                        <td>C15</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático (metilo)</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (C-C, 3 C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Grupo Metoxietilo -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingMetoxietil">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMetoxietil" aria-expanded="false" aria-controls="collapseMetoxietil">
+                                        <strong>Grupo Metoxietilo</strong> <span class="ms-2 text-muted small">(C16, C17, O18, C19)</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseMetoxietil" class="accordion-collapse collapse" aria-labelledby="headingMetoxietil" data-bs-parent="#accordionHibridacion">
+                                    <div class="accordion-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-bordered align-middle bg-white mb-0" id="tabla-hibridacion-metoxietil">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Átomo</th>
+                                                        <th>Hibridación</th>
+                                                        <th>Clase</th>
+                                                        <th>Ángulos de enlace</th>
+                                                        <th>Tipo de enlaces</th>
+                                                        <th>Geometría molecular</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-atom="C16" data-image="metoxietil">
+                                                        <td>C16</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (C-C aromático, C-C, 2 C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C17" data-image="metoxietil">
+                                                        <td>C17</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (2 C-C, C-O, C-H, 2 C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                    <tr data-atom="O18" data-image="metoxietil">
+                                                        <td>O18</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Oxígeno de éter</td>
+                                                        <td>~104.5°</td>
+                                                        <td>2 enlaces σ (C-O-C), 2 pares libres</td>
+                                                        <td><b>Angular</b></td>
+                                                    </tr>
+                                                    <tr data-atom="C19" data-image="metoxietil">
+                                                        <td>C19</td>
+                                                        <td><b>sp³</b></td>
+                                                        <td>Carbono alifático (metilo)</td>
+                                                        <td>~109.5°</td>
+                                                        <td>4 enlaces σ (C-O, 3 C-H)</td>
+                                                        <td><b>Tetraédrica</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
