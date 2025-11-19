@@ -1064,41 +1064,99 @@
                 }
             }
             
-            // Usar serial directamente (como se hace en setStyle y zoomTo que funcionan correctamente)
-            // No convertir a índices, usar el serial tal cual está en atomSerialMap
+            // Obtener coordenadas usando model.atom() como en analyzeModelAndCreateMapping
+            // Estrategia: Obtener TODOS los átomos del modelo y crear un mapeo serial -> coordenadas
+            const model = viewerNumerado.getModel();
+            const serialToCoords = {}; // Mapeo serial -> {x, y, z}
+            
+            // Obtener todos los átomos y sus coordenadas usando el mismo método que analyzeModelAndCreateMapping
+            if (model && model.length) {
+                try {
+                    // Iterar sobre todos los átomos del modelo
+                    for (let i = 0; i < model.length; i++) {
+                        try {
+                            let atom = null;
+                            
+                            // Usar el mismo método que funciona en analyzeModelAndCreateMapping
+                            if (typeof model.atom === 'function') {
+                                atom = model.atom(i);
+                            } else if (Array.isArray(model) && model[i]) {
+                                atom = model[i];
+                            } else if (model[i] !== undefined) {
+                                atom = model[i];
+                            }
+                            
+                            if (atom) {
+                                let x, y, z;
+                                
+                                // Obtener coordenadas en diferentes formatos
+                                if (atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
+                                    x = atom.x;
+                                    y = atom.y;
+                                    z = atom.z;
+                                } else if (atom.coord && Array.isArray(atom.coord) && atom.coord.length >= 3) {
+                                    x = atom.coord[0];
+                                    y = atom.coord[1];
+                                    z = atom.coord[2];
+                                }
+                                
+                                if (x !== undefined && y !== undefined && z !== undefined) {
+                                    // Guardar coordenadas usando el índice como serial (base 0)
+                                    serialToCoords[i] = {x: x, y: y, z: z};
+                                    // También guardar como serial base 1 (i + 1) por si acaso
+                                    serialToCoords[i + 1] = {x: x, y: y, z: z};
+                                }
+                            }
+                        } catch(e) {
+                            // Continuar con el siguiente átomo
+                        }
+                    }
+                } catch(e) {
+                    console.warn('Error al obtener átomos del modelo:', e);
+                }
+            }
+            
+            // Agregar etiquetas usando el mapeo de coordenadas
             for (const [atomName, label] of Object.entries(atomLabels)) {
                 const serial = labelSerialMap[atomName];
                 if (serial !== undefined) {
                     try {
-                        // Determinar color de fondo según el elemento
-                        let bgColor = '#dc3545';
-                        let borderColor = '#c82333';
+                        // Buscar coordenadas en el mapeo (probar serial tal cual, serial - 1, y serial + 1)
+                        const coords = serialToCoords[serial] || serialToCoords[serial - 1] || serialToCoords[serial + 1];
                         
-                        if (label.startsWith('O')) {
-                            bgColor = '#dc3545';
-                            borderColor = '#c82333';
-                        } else if (label.startsWith('N')) {
-                            bgColor = '#0d6efd';
-                            borderColor = '#0a58ca';
-                        } else if (label.startsWith('C')) {
-                            bgColor = '#6c757d';
-                            borderColor = '#5a6268';
+                        if (coords) {
+                            // Determinar color de fondo según el elemento
+                            let bgColor = '#dc3545';
+                            let borderColor = '#c82333';
+                            
+                            if (label.startsWith('O')) {
+                                bgColor = '#dc3545';
+                                borderColor = '#c82333';
+                            } else if (label.startsWith('N')) {
+                                bgColor = '#0d6efd';
+                                borderColor = '#0a58ca';
+                            } else if (label.startsWith('C')) {
+                                bgColor = '#6c757d';
+                                borderColor = '#5a6268';
+                            }
+                            
+                            // Agregar etiqueta usando coordenadas
+                            viewerNumerado.addLabel(label, {
+                                position: {x: coords.x, y: coords.y, z: coords.z},
+                                fontSize: 16,
+                                fontColor: 'white',
+                                backgroundColor: bgColor,
+                                showBackground: true,
+                                backgroundOpacity: 0.95,
+                                borderThickness: 3,
+                                borderColor: borderColor,
+                                inFront: true
+                            });
+                        } else {
+                            console.warn(`No se encontraron coordenadas para ${atomName} (serial ${serial})`);
                         }
-                        
-                        // Usar serial directamente en position (igual que en setStyle y zoomTo)
-                        viewerNumerado.addLabel(label, {
-                            position: {serial: serial},
-                            fontSize: 16,
-                            fontColor: 'white',
-                            backgroundColor: bgColor,
-                            showBackground: true,
-                            backgroundOpacity: 0.95,
-                            borderThickness: 3,
-                            borderColor: borderColor,
-                            inFront: true
-                        });
                     } catch(e) {
-                        console.warn(`Error al agregar etiqueta para ${atomName} (serial ${serial}):`, e);
+                        console.warn(`Error al agregar etiqueta para ${atomName}:`, e);
                     }
                 }
             }
