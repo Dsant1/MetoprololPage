@@ -1064,104 +1064,41 @@
                 }
             }
             
-            // Si no se obtuvieron átomos, intentar usar el selector de serial directamente
-            if (atoms.length === 0) {
-                console.log('No se pudieron obtener átomos del modelo, usando método alternativo');
-                // Intentar agregar etiquetas usando serial directamente
-                for (const [atomName, label] of Object.entries(atomLabels)) {
-                    const serial = labelSerialMap[atomName];
-                    if (serial !== undefined) {
-                        try {
-                            // Determinar color de fondo según el elemento
-                            let bgColor = '#dc3545';
-                            let borderColor = '#c82333';
-                            
-                            if (label.startsWith('O')) {
-                                bgColor = '#dc3545';
-                                borderColor = '#c82333';
-                            } else if (label.startsWith('N')) {
-                                bgColor = '#0d6efd';
-                                borderColor = '#0a58ca';
-                            } else if (label.startsWith('C')) {
-                                bgColor = '#6c757d';
-                                borderColor = '#5a6268';
-                            }
-                            
-                            // Intentar usar serial directamente en la posición
-                            viewerNumerado.addLabel(label, {
-                                position: {serial: serial},
-                                fontSize: 16,
-                                fontColor: 'white',
-                                backgroundColor: bgColor,
-                                showBackground: true,
-                                backgroundOpacity: 0.95,
-                                borderThickness: 3,
-                                borderColor: borderColor,
-                                inFront: true
-                            });
-                        } catch(e) {
-                            console.warn(`Error al agregar etiqueta para ${atomName}:`, e);
+            // Usar serial directamente (como se hace en setStyle y zoomTo que funcionan correctamente)
+            // No convertir a índices, usar el serial tal cual está en atomSerialMap
+            for (const [atomName, label] of Object.entries(atomLabels)) {
+                const serial = labelSerialMap[atomName];
+                if (serial !== undefined) {
+                    try {
+                        // Determinar color de fondo según el elemento
+                        let bgColor = '#dc3545';
+                        let borderColor = '#c82333';
+                        
+                        if (label.startsWith('O')) {
+                            bgColor = '#dc3545';
+                            borderColor = '#c82333';
+                        } else if (label.startsWith('N')) {
+                            bgColor = '#0d6efd';
+                            borderColor = '#0a58ca';
+                        } else if (label.startsWith('C')) {
+                            bgColor = '#6c757d';
+                            borderColor = '#5a6268';
                         }
-                    }
-                }
-            } else {
-                // Agregar etiquetas usando coordenadas
-                for (const [atomName, label] of Object.entries(atomLabels)) {
-                    const serial = labelSerialMap[atomName];
-                    if (serial !== undefined && atoms.length > 0) {
-                        try {
-                            let atomIndex = serial === 0 ? 0 : serial - 1;
-                            
-                            if (atomIndex >= 0 && atomIndex < atoms.length) {
-                                const atom = atoms[atomIndex];
-                                if (atom) {
-                                    let x, y, z;
-                                    if (atom.x !== undefined && atom.y !== undefined && atom.z !== undefined) {
-                                        x = atom.x;
-                                        y = atom.y;
-                                        z = atom.z;
-                                    } else if (atom.coord && Array.isArray(atom.coord) && atom.coord.length >= 3) {
-                                        x = atom.coord[0];
-                                        y = atom.coord[1];
-                                        z = atom.coord[2];
-                                    } else if (atom.position && atom.position.length >= 3) {
-                                        x = atom.position[0];
-                                        y = atom.position[1];
-                                        z = atom.position[2];
-                                    }
-                                    
-                                    if (x !== undefined && y !== undefined && z !== undefined) {
-                                        let bgColor = '#dc3545';
-                                        let borderColor = '#c82333';
-                                        
-                                        if (label.startsWith('O')) {
-                                            bgColor = '#dc3545';
-                                            borderColor = '#c82333';
-                                        } else if (label.startsWith('N')) {
-                                            bgColor = '#0d6efd';
-                                            borderColor = '#0a58ca';
-                                        } else if (label.startsWith('C')) {
-                                            bgColor = '#6c757d';
-                                            borderColor = '#5a6268';
-                                        }
-                                        
-                                        viewerNumerado.addLabel(label, {
-                                            position: {x: x, y: y, z: z},
-                                            fontSize: 16,
-                                            fontColor: 'white',
-                                            backgroundColor: bgColor,
-                                            showBackground: true,
-                                            backgroundOpacity: 0.95,
-                                            borderThickness: 3,
-                                            borderColor: borderColor,
-                                            inFront: true
-                                        });
-                                    }
-                                }
-                            }
-                        } catch(e) {
-                            console.warn(`Error al agregar etiqueta para ${atomName} (serial ${serial}):`, e);
-                        }
+                        
+                        // Usar serial directamente en position (igual que en setStyle y zoomTo)
+                        viewerNumerado.addLabel(label, {
+                            position: {serial: serial},
+                            fontSize: 16,
+                            fontColor: 'white',
+                            backgroundColor: bgColor,
+                            showBackground: true,
+                            backgroundOpacity: 0.95,
+                            borderThickness: 3,
+                            borderColor: borderColor,
+                            inFront: true
+                        });
+                    } catch(e) {
+                        console.warn(`Error al agregar etiqueta para ${atomName} (serial ${serial}):`, e);
                     }
                 }
             }
