@@ -586,6 +586,32 @@
     // Tabla interactiva de hibridación
     // Modal overlay para visualización 3D de cada átomo/grupo
     let overlayViewer = null;
+    
+    // Mapeo de nombres de átomos a seriales del modelo 3D (basado en 0)
+    // Estos seriales deben corresponder a la posición del átomo en el archivo SDF
+    // Ajusta estos valores según la numeración real de tu modelo
+    const atomSerialMap = {
+        'C1': 0,   // Primer carbono de la cadena 2-propanol
+        'C2': 1,   // Segundo carbono (quiral) de la cadena 2-propanol
+        'C3': 2,   // Tercer carbono de la cadena 2-propanol
+        'O4': 3,   // Oxígeno del éter aromático (fenoxi)
+        'C1\'': 4, // Primer carbono del anillo aromático
+        'C2\'': 5, // Segundo carbono del anillo aromático
+        'C3\'': 6, // Tercer carbono del anillo aromático
+        'C4\'': 7, // Cuarto carbono del anillo aromático
+        'C5\'': 8, // Quinto carbono del anillo aromático
+        'C6\'': 9, // Sexto carbono del anillo aromático
+        'O11': 10, // Oxígeno del alcohol secundario
+        'N12': 11, // Nitrógeno de la amina secundaria
+        'C13': 12, // Primer carbono del grupo isopropilo
+        'C14': 13, // Segundo carbono (metilo) del grupo isopropilo
+        'C15': 14, // Tercer carbono (metilo) del grupo isopropilo
+        'C16': 15, // Primer carbono del grupo metoxietilo
+        'C17': 16, // Segundo carbono del grupo metoxietilo
+        'O18': 17, // Oxígeno del éter metoxi
+        'C19': 18  // Carbono del metilo (metoxi)
+    };
+    
     function showOverlayHibridacion(atomName, infoHtml, imageName) {
         document.getElementById('overlay-hibridacion').style.display = 'flex';
         document.getElementById('overlay-hibridacion-info').innerHTML = infoHtml;
@@ -600,14 +626,50 @@
         }
         
         // Limpiar visor anterior si existe
-        if (overlayViewer) overlayViewer.clear();
+        if (overlayViewer) {
+            try {
+                overlayViewer.clear();
+            } catch(e) {}
+        }
         overlayViewer = $3Dmol.createViewer("overlay-hibridacion-viewer", {backgroundColor: "white"});
         
-        // Mapeo de nombres de átomos a seriales (necesitarás ajustar según tu modelo 3D)
-        // Por ahora, solo mostramos el visor sin resaltar específicamente
+        // Obtener el serial del átomo (índice basado en 0)
+        let atomSerial = atomSerialMap[atomName];
+        
+        // Si no está en el mapeo, intentar extraer del nombre
+        if (atomSerial === undefined) {
+            const match = atomName.match(/(\d+)/);
+            if (match) {
+                // Restar 1 porque los seriales en 3Dmol son base 0
+                atomSerial = parseInt(match[1]) - 1;
+            }
+        }
+        
         $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", overlayViewer, {}, function() {
+            // Establecer estilo base para todos los átomos
             overlayViewer.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-            overlayViewer.zoomTo();
+            
+            // Resaltar el átomo específico si tenemos su serial
+            if (atomSerial !== undefined && atomSerial >= 0) {
+                // Obtener información del modelo para verificar
+                const model = overlayViewer.getModel();
+                const numAtoms = model ? model.length : 0;
+                
+                // Verificar que el serial esté dentro del rango válido
+                if (atomSerial < numAtoms) {
+                    overlayViewer.setStyle({serial: atomSerial}, {
+                        stick: {radius:0.28, color: '#e74c3c'}, 
+                        sphere: {scale:0.35, color: '#e74c3c'}
+                    });
+                    overlayViewer.zoomTo({serial: atomSerial});
+                } else {
+                    console.warn(`Serial ${atomSerial} fuera de rango. Total de átomos: ${numAtoms}`);
+                    overlayViewer.zoomTo();
+                }
+            } else {
+                console.warn(`No se pudo determinar el serial para el átomo: ${atomName}`);
+                overlayViewer.zoomTo();
+            }
             overlayViewer.render();
         });
     }
