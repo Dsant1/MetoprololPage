@@ -1272,13 +1272,13 @@
                 }, 100);
         }
     // 1. Éter aromático (Ar–O–R)
-    // O4 (serial 0) conecta el anillo bencénico (C1' serial 11) con la cadena lateral (C1 serial 7)
+    // O4 (serial 0) conecta el anillo bencénico (C1' serial 11) - solo resaltar O4 y C1', sin el carbono de la cadena lateral
     let v1 = $3Dmol.createViewer("viewer-funcional-1", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v1, {}, function() {
-        // Oxígeno O4 (serial 0) y carbonos adyacentes: C1' (serial 11: anillo aromático), C1 (serial 7: cadena lateral 2-propanol)
+        // Oxígeno O4 (serial 0) y carbono C1' del anillo aromático (serial 11) - sin resaltar el carbono de la cadena lateral
         v1.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-        v1.setStyle({serial: [0, 11, 7]}, {stick: {radius:0.25, color: '#64a19d'}, sphere: {scale:0.3, color: '#64a19d'}});
-        v1.zoomTo({serial: [0, 11, 7]});
+        v1.setStyle({serial: [0, 11]}, {stick: {radius:0.25, color: '#64a19d'}, sphere: {scale:0.3, color: '#64a19d'}});
+        v1.zoomTo({serial: [0, 11]});
         v1.render();
     });
     // 2. Alcohol secundario
