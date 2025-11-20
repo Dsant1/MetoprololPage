@@ -1302,13 +1302,13 @@
         v3.render();
     });
     // 4. Anillo aromático (bencénico)
-    // Los 6 carbonos del anillo: C1' (10), C2' (15), C3' (13), C4' (9), C5' (12), C6' (14)
+    // Los 6 carbonos del anillo según atomSerialMap: C1' (11), C2' (16), C3' (14), C4' (10), C5' (13), C6' (15)
     let v4 = $3Dmol.createViewer("viewer-funcional-4", {backgroundColor: "white"});
     $3Dmol.download("assets/models/Conformer3D_COMPOUND_CID_4171.sdf", v4, {}, function() {
-        // Átomos del anillo bencénico: C1' (10), C2' (15), C3' (13), C4' (9), C5' (12), C6' (14)
+        // Átomos del anillo bencénico en orden cíclico: C1' (11), C2' (16), C3' (14), C4' (10), C5' (13), C6' (15)
         v4.setStyle({}, {stick: {radius:0.18, color: '#bbb'}, sphere: {scale:0.23, color: '#bbb'}});
-        v4.setStyle({serial: [10, 15, 13, 9, 12, 14]}, {stick: {radius:0.25, color: '#a16468'}, sphere: {scale:0.3, color: '#a16468'}});
-        v4.zoomTo({serial: [10, 15, 13, 9, 12, 14]});
+        v4.setStyle({serial: [11, 16, 14, 10, 13, 15]}, {stick: {radius:0.25, color: '#a16468'}, sphere: {scale:0.3, color: '#a16468'}});
+        v4.zoomTo({serial: [11, 16, 14, 10, 13, 15]});
         v4.render();
     });
     </script>
